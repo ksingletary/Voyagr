@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<div id="root" class="container min-h-screen bg-center bg-cover min-w-full">
+    <div class="">
+        <video autplay muted loop id="vid" class="mix-blend-overlay">
+            <source src="/static/media/Voyagr1.mp4" type="video/mp4">
+        </video>
+        
+        
+        <nav class="text-white">
+            <a href="/" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+            <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
+            inline-block hover:bg-transparent hover:border-orange-400 
+            text-white duration-300 hover:border border border-transparent">Book a trip</a>
+        </nav>  
+          
+        <div class="text-center font-bold mt-60">
+            <h1 class="text-7xl leading-normal">
+                <b class="text-white">Unbelievable</b>
+                <b class="text-orange-700 ">Voyages</b>
+            </h1>
+            <p class="text-white text-3xl">Out of this world</p>
+            <div class="middle">
+                <a href="#" class="bg-orange-700 rounded-3xl py-3 px-8 font-bold 
+                inline-block hover:bg-transparent hover:border-orange-700 
+                text-white duration-300 hover:border border border-transparent mt-5">See them all</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}
+
