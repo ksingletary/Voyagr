@@ -1,4 +1,4 @@
 secret.py
 venv/
 __pyache__/
-
+.env
