@@ -57,10 +57,11 @@ class Trip(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
-    description = db.Column(db.Text, db.ForeignKey('activities.description'), nullable=True)
-    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False)
+    description = db.Column(db.Text, db.ForeignKey('activities.description'), nullable=True, unique=True)
+    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False, unique=True)
     photos = db.Column(db.Text, nullable=True, default=None)
-    cost = db.Column(db.Float, db.ForeignKey('booked_trips.cost'), nullable=False)
+    cost = db.Column(db.Float, nullable=False)
+
     available = db.Column(db.Boolean, nullable=False, default=False)
 
 class Activity(db.Model):
@@ -68,10 +69,10 @@ class Activity(db.Model):
 
     __tablename__ = 'activities'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
     name = db.Column(db.Text, nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
-    description = db.Column(db.Text, nullable=True, default=None)
+    description = db.Column(db.Text, nullable=True, default=None, unique=True)
     
 class Location(db.Model):
     """Location Model"""
@@ -88,7 +89,7 @@ class Booked_Trip(db.Model):
     __tablename__ = 'booked_trips'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    cost = db.Column(db.Float, nullable=False)
+    cost = db.Column(db.Float, db.ForeignKey('trips.cost'), nullable=False)
     booked_at = db.Column(db.DateTime, default=datetime.utcnow)
     
     

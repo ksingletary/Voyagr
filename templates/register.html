@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<h1>Sign Up</h1>
+<p>register to join Voyagr</p>
+
+
+<form method="POST">
+
+    {{ form.hidden_tag() }}
+
+    {% for field in form
+    if field.widget.input_type != 'hidden' %}
+    <div class="animated animatedFadeInUp fadeInUp mb-1 sm:mb-2">
+        {{field.label(class_="inline-block mb-1 font-medium")}}
+        {{field(class_="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-purple-500 focus:outline-none focus:shadow-outline")}}
+
+        {% for error in field.errors %}
+        {{error}}
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button type="submit" class="bg-orange-700 rounded-3xl py-3 px-8 font-medium 
+    inline-block mr-4 hover:bg-transparent hover:border-orange-400 
+    hover:text-white duration-300 hover:border border border-transparent">register</button>
+</form>
+
+    
+
+{% endblock %}

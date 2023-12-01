@@ -42,6 +42,11 @@ ul li{
     position: relative;
 }
 
+#weirdDiv{
+    display: grid;
+    grid-auto-flow: column;  
+}
+
 /* Animation */
 
 @keyframes fadeInUp {

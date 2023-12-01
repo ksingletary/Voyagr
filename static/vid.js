@@ -6,7 +6,7 @@ var interval = setInterval(function(){
       document.getElementById('vid').play();
       clearInterval(interval);
     }
-  },2000);
+  }, 0);
 
   // Helper function for scroll animations
 
