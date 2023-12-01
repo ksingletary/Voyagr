@@ -1,15 +1,22 @@
 import requests
-from secret import KEY, API_SECRET
+# from secret import KEY, API_SECRET
+from dotenv import load_dotenv
+import os
 
 API_BASE_URL = "https://test.api.amadeus.com/v1"
+
+def configure():
+    load_dotenv()
+
+configure()
 
 def new_token():
     """Generate new token after each request. Exp: 30 minutes"""
 
     data = {
     'grant_type': 'client_credentials',
-    'client_id': KEY,
-    'client_secret': API_SECRET
+    'client_id': os.getenv('KEY'),
+    'client_secret': os.getenv('API_SECRET')
     }
 
     response = requests.post('https://test.api.amadeus.com/v1/security/oauth2/token', data=data)
@@ -18,6 +25,7 @@ def new_token():
     return new_token
     
 token = new_token()
+
 
 def get_pics():
     """API calls for Pics on home page"""
