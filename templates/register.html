@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}Register{% endblock %}
 {% block content %}
 
 <div class="overflow-hidden bg-white">
     <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div class="flex flex-col items-center mt-8 justify-between xl:flex-row">
             <div class="w-full max-w-xl mb-12 xl:pr-16 xl:mb-0 xl:w-7/12">
-                <h2 class="animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">
-                    Want to hear the latest on 
-                    <br class="hidden md:block">
-                    amazing deals and
-                    <span class="animated animatedFadeInUp fadeInUp text-teal-accent-400">travel packages?</span>
-                </h2>
-                <p class="animated animatedFadeInUp fadeInUp max-w-xl mb-4 text-base text-gray-400 md:text-lg">
-                    Sign up for our
-                    <i>Voyagr</i>
-                    newsletter and be the first to hear about your next adventure
-                </p>
+                <div class="grid gap-10 lg:grid-cols-2">
+                    <div class="flex items-center justify-center -mx-4 lg:pl-8">
+                        <div class="header animated animatedFadeInUp fadeInUp flex flex-col items-end px-3"> 
+                            <img class="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56" src="https://screen-api.vizeater.co/files/1279053/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" alt="" >
+                            <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src="https://screen-api.vizeater.co/files/1279070/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" alt="" >
+                        </div>
+                    </div>
+                    <div class=" animated animatedFadeInUp fadeInUp mt-24 max-w-xs max-h-80	">
+                        <img class="object-cover rounded shadow-lg sm:h-72 xl:h-72 sm:w-60 xl:w-60 " src="https://media.istockphoto.com/id/938577732/photo/woman-leading-the-way-while-traveling-in-the-desert.jpg?s=612x612&w=0&k=20&c=-a5q5roL3TF-_M7cCyIWEC9CiJzfqcBJgcK3RkbkDOc=" alt="" >
+                    </div>
+                </div>
             </div>  
             <div class="w-full max-wxl xl:px-8 xl:w-5/12">
                 <div class="relative">
@@ -29,7 +29,7 @@
                             if field.widget.input_type != 'hidden' %}
                             <div class="animated animatedFadeInUp fadeInUp mb-1 sm:mb-2">
                                 {{field.label(class_="inline-block mb-1 font-medium")}}
-                                {{field(class_="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-purple-500 focus:outline-none focus:shadow-outline")}}
+                                {{field(class_="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-orange-500 focus:outline-none focus:shadow-outline")}}
 
                                 {% for error in field.errors %}
                                 {{error}}

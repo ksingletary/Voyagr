@@ -8,20 +8,26 @@
             <source src="/static/media/Voyagr1.mp4" type="video/mp4">
         </video>
         
+        <div>
+            {% for msg in get_flashed_messages() %}
+            <div class="text-white font-sans">{{msg}}</div>
+            {% endfor %}
+        </div>
         
         <nav class="text-white">
-            <a href="/" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
+            <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Destinations</a></li>
-                <li><a href="#">Careers</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/voyagr/about">About</a></li>
+                <li><a href="/voyagr/destinations">Destinations</a></li>
+                <li><a href="/voyagr/login">Login</a></li>
+                {% if session['username'] %}
+                <li><a href="/logout">Logout</a></li>
+                {% endif %}
             </ul>
-            <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
+            <a href="/voyagr/destinations" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
             inline-block hover:bg-transparent hover:border-orange-400 
             text-white duration-300 hover:border border border-transparent">Book a trip</a>
-        </nav>  
-          
+        </nav>
         <div class="text-center font-bold mt-60">
             <h1 class="text-7xl leading-normal animated animatedFadeInUp fadeInUp">
                 <b class="text-white">Unbelievable</b>
@@ -29,7 +35,7 @@
             </h1>
             <p class="text-white text-3xl animated animatedFadeInUp fadeInUp">Out of this world</p>
             <div class="middle">
-                <a href="#" class="bg-orange-700 rounded-3xl py-3 px-8 font-bold 
+                <a href="/voyagr/destinations" class="bg-orange-700 rounded-3xl py-3 px-8 font-bold 
                 inline-block hover:bg-transparent hover:border-orange-700 
                 text-white duration-300 hover:border border border-transparent mt-5 animated animatedFadeInUp fadeInUp">See them all</a>
             </div>
@@ -74,7 +80,7 @@
                         </div>
                     </div>
                     <div class="animated animatedFadeInUp fadeInUp overflow-hidden transition-shadow duration-300 rounded shadow-sm bg-white">
-                        <img src="https://www.mustardvintage.com/cdn/shop/products/mid_century_ercol_ercolani_elm_coffee_table.4_2048x2048.JPG?v=1571267041" class="object-cover w-full h-64"  alt="">
+                        <img src="https://screen-api.vizeater.co/files/1279072/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" class="object-cover w-full h-64"  alt="">
                         <div class="p-5 border border-t-0">
                             <p class="animated animatedFadeInUp fadeInUp mb-3 text-xs font-semibold tracking-wide uppercase">
                                 <a href="#" class="transition-colors duration-200" aria-label="Category" title="traveling">traveling</a>

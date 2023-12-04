@@ -28,7 +28,7 @@ connect_db(app)
 
 
 #     return render_template('home.html', my_pic=my_pic, nt=nt)
-@app.route('/')
+@app.route('/voyagr')
 def home_page():
     """Home Page"""
     form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
@@ -44,15 +44,15 @@ def require_login(f):
         route_username = kwargs.get('username', None)
 
         if session_username is None:
-            return redirect('/login')
+            return redirect('/voyagr/login')
         
         if route_username is not None and session_username != route_username:
-            return redirect('/login')
+            return redirect('/voyagr/login')
         
         return f(*args, **kwargs)
     return decorated_function
 
-@app.route('/register', methods=["GET", "POST"])
+@app.route('/voyagr/register', methods=["GET", "POST"])
 def register_user():
     form = UserForm()
     if form.validate_on_submit():
@@ -62,12 +62,12 @@ def register_user():
 
         db.session.add(new_user)
         db.session.commit()
-        session['user_id'] = new_user.id
+        session['username'] = new_user.id
         flash('Welcome!')
-        return redirect('/')
+        return redirect('/voyagr')
     return render_template('register.html', form=form)
 
-@app.route('/login', methods=["GET", "POST"])
+@app.route('/voyagr/login', methods=["GET", "POST"])
 def login_user():
     form = UserForm()
     if form.validate_on_submit():
@@ -76,10 +76,29 @@ def login_user():
 
         user = User.authenticate(username, password)
         if user:
-            flash(f"Welcome back {user.username}")
-            session['user_id'] = user.id
-            return redirect('/')
+            flash(f"Welcome back {user.username}!")
+            session['username'] = user.id
+            return redirect('/voyagr')
         else:
             form.username.errors = ['Invalid username/password']
     return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    """logout a user"""
+    session.pop('username', None)
+    return redirect('/voyagr')
+
+@app.route('/voyagr/about')
+def about_page():
+    """About Page for Voyagr"""
+
+    return render_template('about.html')
+
+@app.route('/voyagr/destinations')
+@require_login
+def destinations_page():
+    """Destinations showing various hotspots"""
+
+    return render_template('destinations.html')
 

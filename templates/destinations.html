@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+<div class=" -mt-20">
+    <img src="https://screen-api.vizeater.co/files/1279057/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" id="bimg" class="absolute z-0 inset-0 object-cover w-full h-full mix-blend-overlay" alt="">
+    <nav class="text-white z-10" id="destine">
+        <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
+        <ul>
+            <li><a href="/voyagr/about">About</a></li>
+            <li><a href="/voyagr/destinations">Destinations</a></li>
+            <li><a href="/voyagr/login">Login</a></li>
+        </ul>
+        <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
+        inline-block hover:bg-transparent hover:border-orange-400 
+        text-white duration-300 hover:border border border-transparent">Book a trip</a>
+    </nav> 
+    <div class="relative bg-opacity-75">
+        <div class="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div class="flex flex-col mt-20 items-center justify-between xl:flex-row">
+                <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
+                    <h2 class="header rounded animated animatedFadeInUp fadeInUp max-w-lg mb-20 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+                        The
+                        <i>greatest</i>
+                        adventure you've
+                        <br class="hidden md:block">
+                        ever had is just a click away
+                    </h2>
+                    <a href="#info" aria-label="Scroll down" id="tag" class="header5 animated animatedFadeInUp fadeInUp bounce flex items-center justify-center  w-10 h-10 mx-auto text-white duration-300 transform bg-orange-700 rounded-full hover:bg-cyan hover:shadow hover:scale-110">
+                        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 6V18M12 18L7 13M12 18L17 13" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="w-full mt-20 max-w-xl xl:px-8 xl:w-5/12">
+                    <div class="header2 animated animatedFadeInUp fadeInUp bg-white rounded shadow-2xl p-7 sm:p-10">
+                        <h3 class="header3 animated animatedFadeInUp fadeInUp mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">Tokyo, Japan</h3>
+                        <p class="header4 animated animatedFadeInUp fadeInUp mt-10 mb-32">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci illum voluptates commodi harum nulla nisi temporibus nihil tempora, placeat dolores inventore illo animi magnam aperiam? Veritatis placeat voluptatum temporibus minima?
+                        </p>
+                        <a href="" class="animated animatedFadeInUp fadeInUp border-orange-100 border-t-2 border-b-2 border-l-2 border-r-2 py-2.5
+                                 inline-flex items-center justify-center 
+                                w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full 
+                                shadow-md bg-orange-700 hover:bg-cyan-600 focus:shadow-outline focus:outline-none ">
+                                    View Destination
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="px-8 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <div class="grid gap-12 row-gap-8 lg:grid-cols-2">
+        <div class="flex flex-col justify-center">
+            <div class="max-w-xl mb-6">
+                <h2 class="animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">
+                    The Colosseum
+                </h2>
+                <p class="animated animatedFadeInUp fadeInUp text-base text-gray-800 md:text-lg">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, dolorem hic rerum commodi alias tempora doloribus velit quisquam error quam officia tempore dolores? Pariatur nulla corrupti at eos, velit nemo!
+                </p>
+            </div>
+            <div class="grid gap-8 row-gap-8 sm:grid-cols-2">
+                <div>
+                    <h6 class="animated animatedFadeInUp fadeInUp mb-2 font-semibold leading-5">Pantheon, The Colosseum, & more</h6>
+                    <p class="animated animatedFadeInUp fadeInUp text-sm text-gray-800">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique accusantium sapiente quaerat quibusdam inventore architecto eius omnis, amet neque doloribus vel sunt magnam magni molestiae accusamus. Dolore, temporibus cum!
+                    </p>
+                    <a class="animated animatedFadeInUp fadeInUp flex h-12 w-40 mx-auto my-10 bg-orange-700 rounded-3xl py-3 px-8 font-medium 
+                     hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="#">More Details</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <img class="animated animatedFadeInUp fadeInUp object-cover w-full h-56 rounded shadow-lg sm:h-96" src="https://d1i21eq0w7p1n3.cloudfront.net/8dp5y8929kch1yxedsx4myxx9poa
+            " alt="">
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

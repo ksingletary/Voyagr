@@ -22,3 +22,6 @@ if (elementsToFadeInUpOnScroll) {
     });
   });
 }
+
+atag = document.getElementById('tag')
+atag.scrollTo('#info')
