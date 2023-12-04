@@ -21,7 +21,7 @@
             <div class="w-full max-wxl xl:px-8 xl:w-5/12">
                 <div class="relative">
                     <div class="animated animatedFadeInUp fadeInUp relative bg-white rounded shadow-2xl sm:p-10">
-                        <h3 class="animated animatedFadeInUp fadeInUp mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">Sign Up</h3>
+                        <h3 class="animated animatedFadeInUp fadeInUp mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">Login</h3>
                         <form method="POST">
                             {{ form.hidden_tag() }}
 
@@ -41,8 +41,10 @@
                                  inline-flex items-center justify-center 
                                 w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full 
                                 shadow-md bg-orange-700 hover:bg-cyan-600 focus:shadow-outline focus:outline-none ">
-                                    register
+                                    Sign in
                                 </button>
+                                <p class="mt-8">Don't have an account?</p>
+                                <div class="mt-5"><a href="/register" class=" text-orange-700">Sign Up</a></div>
                             </div>
                         </form>
                     </div>
