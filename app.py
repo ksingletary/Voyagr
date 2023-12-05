@@ -100,5 +100,7 @@ def about_page():
 def destinations_page():
     """Destinations showing various hotspots"""
 
-    return render_template('destinations.html')
+    form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
+
+    return render_template('destinations.html', form=form)
 

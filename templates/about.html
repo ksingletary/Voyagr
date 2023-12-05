@@ -8,6 +8,9 @@
         <li><a href="/voyagr/about">About</a></li>
         <li><a href="/voyagr/destinations">Destinations</a></li>
         <li><a href="/voyagr/login">Login</a></li>
+        {% if session['username'] %}
+                <li><a href="/logout">Logout</a></li>
+        {% endif %}
     </ul>
     <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
     inline-block hover:bg-transparent hover:border-orange-400 
