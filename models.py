@@ -21,6 +21,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.Text, nullable=False, unique=True)
     password = db.Column(db.Text, nullable=False)
+    image_url = db.Column(db.Text, nullable=True)
 
     # start_register
     @classmethod
@@ -49,6 +50,18 @@ class User(db.Model):
         else:
             return False
     # end authenticate
+    # start_edit
+    @classmethod
+    def edit(cls, username, pwd):
+        """Edit user w/hashed password & return user."""
+
+        hashed = bcrypt.generate_password_hash(pwd)
+        # turn bystestring into normal (unicode utf8) string
+        hashed_utf8 = hashed.decode("utf8")
+
+        # return instance of user w/username and hashed pwd
+        return cls(username=username, password=hashed_utf8)
+    # end edit
 
 class Trip(db.Model):
     """Trip Model"""

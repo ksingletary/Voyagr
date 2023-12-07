@@ -1,7 +1,7 @@
 """Flask app for Voyagr"""
 from flask import Flask, render_template, request, jsonify, session, redirect, flash
 from models import db, connect_db, User
-from forms import UserForm, UpdatesForm
+from forms import UserForm, UpdatesForm, EditProfileForm
 # from API_helpers import get_pics, new_token
 from functools import wraps
 
@@ -15,22 +15,13 @@ app.secret_key = 'not_telling_you!'
 
 connect_db(app)
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
-# 5 destinations/ttrips  3-4 activites per destination/trip
-
-# @app.route('/')
-# def home_page():
-#     """Home Page"""
-#     nt = new_token()
-#     my_pic = get_pics()     #also storing descriptions in this tuple
-
-
-#     return render_template('home.html', my_pic=my_pic, nt=nt)
 @app.route('/voyagr')
 def home_page():
     """Home Page"""
+
     form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
 
     return render_template('home.html', form=form)
@@ -103,4 +94,79 @@ def destinations_page():
     form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
 
     return render_template('destinations.html', form=form)
+
+@app.route('/voyagr/tokyo')
+@require_login
+def destinations_tokyo():
+    """Individual Tokyo Destinations Page"""
+
+    return render_template('tokyo.html')
+
+@app.route('/voyagr/rome')
+@require_login
+def destinations_rome():
+    """Individual Rome Destinations Page"""
+
+    return render_template('rome.html')
+
+@app.route('/voyagr/giza')
+@require_login
+def destinations_giza():
+    """Individual Giza Pyramids Destinations Page"""
+
+    return render_template('giza.html')
+
+@app.route('/voyagr/paris')
+@require_login
+def destinations_paris():
+    """Individual Paris Destinations Page"""
+
+    return render_template('paris.html')
+
+@app.route('/voyagr/dubai')
+@require_login
+def destinations_dubai():
+    """Individual Dubai Destinations Page"""
+
+    return render_template('dubai.html')
+
+@app.route('/voyagr/users/<int:user_id>')
+@require_login
+def user_show(user_id):
+    """Show User Profile"""
+
+    user = User.query.get_or_404(user_id)
+    form = EditProfileForm()
+
+    return render_template('user.html', user=user)
+
+@app.route('/voyagr/users/<int:user_id>/edit', methods=["GET", "POST"])
+@require_login
+def user_edit(user_id):
+    """Edit a User"""
+
+    user = User.query.get_or_404(user_id)
+    form = EditProfileForm(username=user.username, password=user.password, image_url=user.image_url)
+
+    if form.validate_on_submit():
+        # Check if password is correct
+        if User.authenticate(user.username, user.password):
+            user.username = form.username.data
+            user.password = form.password.data
+            user.image_url = form.image_url.data or user.image_url #if no image_url, use current image_url
+
+            edited_user = User.edit(user.username, user.password)
+            db.session.add(edited_user)
+            db.session.commit()
+
+            return redirect(f"/voyagr/users/{user.id}")
+        else:
+            flash("Invalid password, please try again.", "danger")
+            return redirect(f"/voyagr/users/{user.id}/edit")
+    
+    return render_template("user_edit.html", form=form, user=user)
+
+
+
+
 

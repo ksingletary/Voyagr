@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}Destinations{% endblock %}
 {% block content %}
 
 
@@ -10,9 +10,14 @@
         <ul>
             <li><a href="/voyagr/about">About</a></li>
             <li><a href="/voyagr/destinations">Destinations</a></li>
-            <li><a href="/voyagr/login">Login</a></li>
             {% if session['username'] %}
-                <li><a href="/logout">Logout</a></li>
+            <li><a href="/voyagr/login" class="hidden">Login</a></li>
+            {% else %}
+            <li><a href="/voyagr/login">Login</a></li>
+            {% endif %}
+            {% if session['username'] %}
+            <li><a href="/voyagr/users/{{session['username']}}">Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
             {% endif %}
         </ul>
         <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
@@ -42,7 +47,7 @@
                         <p class="header4 animated animatedFadeInUp fadeInUp mt-10 mb-32">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci illum voluptates commodi harum nulla nisi temporibus nihil tempora, placeat dolores inventore illo animi magnam aperiam? Veritatis placeat voluptatum temporibus minima?
                         </p>
-                        <a href="" class="animated animatedFadeInUp fadeInUp border-orange-100 border-t-2 border-b-2 border-l-2 border-r-2 py-2.5
+                        <a href="/voyagr/tokyo" class="animated animatedFadeInUp fadeInUp border-orange-100 border-t-2 border-b-2 border-l-2 border-r-2 py-2.5
                                  inline-flex items-center justify-center 
                                 w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full 
                                 shadow-md bg-orange-700 hover:bg-cyan-600 focus:shadow-outline focus:outline-none ">
@@ -73,7 +78,7 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique accusantium sapiente quaerat quibusdam inventore architecto eius omnis, amet neque doloribus vel sunt magnam magni molestiae accusamus. Dolore, temporibus cum!
                     </p>
                     <a class="animated animatedFadeInUp fadeInUp flex h-12 w-40 mx-auto my-10 bg-orange-700 rounded-3xl py-3 px-8 font-medium 
-                     hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="#">More Details</a>
+                     hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="/voyagr/rome">More Details</a>
                 </div>
             </div>
         </div>
@@ -98,7 +103,7 @@
                     <h6 class="animated animatedFadeInUp fadeInUp mb-2 font-semibold leading-5">Camel Rides, Pyramids, and more</h6>
                     <p class="animated animatedFadeInUp fadeInUp text-sm text-gray-900">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur iste odit, impedit mollitia autem error quod vero odio, nihil repellendus praesentium magni, maxime dolorem animi possimus inventore illo repudiandae voluptatibus!</p>
                     <a class="animated animatedFadeInUp fadeInUp flex h-12 w-40 mx-auto my-10 bg-orange-700 rounded-3xl py-3 px-9 font-medium 
-                        hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="#">See Deals</a>
+                        hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="/voyagr/giza">See Deals</a>
                 </div>
             </div>
         </div>
@@ -121,7 +126,7 @@
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique accusantium sapiente quaerat quibusdam inventore architecto eius omnis, amet neque doloribus vel sunt magnam magni molestiae accusamus. Dolore, temporibus cum!
                     </p>
                     <a class="animated animatedFadeInUp fadeInUp flex h-12 w-40 mx-auto my-10 bg-orange-700 rounded-3xl py-3 px-8 font-medium 
-                     hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="#">More Details</a>
+                     hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="/voyagr/paris">More Details</a>
                 </div>
             </div>
         </div>
@@ -146,7 +151,7 @@
                     <h6 class="animated animatedFadeInUp fadeInUp mb-2 font-semibold leading-5">Tour, Discover, Take pics</h6>
                     <p class="animated animatedFadeInUp fadeInUp text-sm text-gray-900">Embark on a flight over Dubai, a complete and unforgettable experience that will make you discover the city from a different angle! Enjoy stunning views of <strong>Dubai Creek</strong> and <strong>Port Rashid in Old Dubai,</strong> as well as <strong>Wafi Mall </strong>and<strong> Dubai Frame Zabeel Park</strong>. See Dubai's most iconic buildings and impressive architecture from a unique perspective</p>
                     <a class="animated animatedFadeInUp fadeInUp flex h-12 w-40 mx-auto my-10 bg-orange-700 rounded-3xl py-3 px-5 font-medium 
-                        hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="#">Schedule Trips</a>
+                        hover:bg-transparent hover:text-orange-700 hover:border-orange-400 text-white duration-300 hover:border border border-transparent" href="/voyagr/dubai">Schedule Trips</a>
                 </div>
             </div>
         </div>
