@@ -1,11 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField
-from wtforms.validators import InputRequired, Email, Optional
+from wtforms import StringField, PasswordField, SubmitField
+from wtforms.validators import InputRequired, Email, Optional, URL
 
 class UserForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired()])
     password = PasswordField("Password", validators=[InputRequired()])
-    image_url = StringField("Profile Image(URL)", validators=[Optional()])
 
 class UpdatesForm(FlaskForm):
     name = StringField("Name", validators=[InputRequired()])
@@ -15,6 +14,12 @@ class EditProfileForm(FlaskForm):
     """Form for editing users."""
 
     username = StringField('Username', validators=[InputRequired()])
-    new_password = PasswordField("New Password", validators=[InputRequired()])
-    image_url = StringField("Profile Image(URL)", validators=[Optional()])
+    image_url = StringField("Profile Image(URL)", validators=[URL(), Optional()])
+
+class BookedTrips(FlaskForm):
+    """Booking Trips Button"""
+
+    booking = SubmitField("Book Now")
+
+
 

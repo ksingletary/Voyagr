@@ -50,18 +50,6 @@ class User(db.Model):
         else:
             return False
     # end authenticate
-    # start_edit
-    @classmethod
-    def edit(cls, username, pwd):
-        """Edit user w/hashed password & return user."""
-
-        hashed = bcrypt.generate_password_hash(pwd)
-        # turn bystestring into normal (unicode utf8) string
-        hashed_utf8 = hashed.decode("utf8")
-
-        # return instance of user w/username and hashed pwd
-        return cls(username=username, password=hashed_utf8)
-    # end edit
 
 class Trip(db.Model):
     """Trip Model"""
@@ -70,12 +58,10 @@ class Trip(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
-    description = db.Column(db.Text, db.ForeignKey('activities.description'), nullable=True, unique=True)
-    activity_id = db.Column(db.Integer, db.ForeignKey('activities.id'), nullable=False, unique=True)
-    photos = db.Column(db.Text, nullable=True, default=None)
-    cost = db.Column(db.Float, nullable=False)
+    description = db.Column(db.Text, nullable=True, default=None)
+    photo = db.Column(db.Text, nullable=True, default=None)
+    cost = db.Column(db.Float, nullable=False, unique=True)
 
-    available = db.Column(db.Boolean, nullable=False, default=False)
 
 class Activity(db.Model):
     """Activity Model"""
@@ -84,8 +70,8 @@ class Activity(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
     name = db.Column(db.Text, nullable=False)
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
-    description = db.Column(db.Text, nullable=True, default=None, unique=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=True)
+    description = db.Column(db.Text, nullable=True, default=None)
     
 class Location(db.Model):
     """Location Model"""

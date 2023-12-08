@@ -1,7 +1,7 @@
 """Flask app for Voyagr"""
 from flask import Flask, render_template, request, jsonify, session, redirect, flash
-from models import db, connect_db, User
-from forms import UserForm, UpdatesForm, EditProfileForm
+from models import db, connect_db, User, Trip, Location,  Activity
+from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips
 # from API_helpers import get_pics, new_token
 from functools import wraps
 
@@ -22,9 +22,10 @@ with app.app_context():
 def home_page():
     """Home Page"""
 
-    form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
+    form = UpdatesForm()
+    descr = Trip.query.get_or_404(1)            #subscribe for updates form. won't send, but will flash success mssg.
 
-    return render_template('home.html', form=form)
+    return render_template('home.html', form=form, descr=descr)
 
 def require_login(f):
     """wrapper function to require login"""
@@ -95,12 +96,27 @@ def destinations_page():
 
     return render_template('destinations.html', form=form)
 
-@app.route('/voyagr/tokyo')
+
+#Individual Destinations
+
+global booked_package
+booked_package = set()          #set so there's no duplicate bookings
+
+@app.route('/voyagr/tokyo', methods=["GET", "POST"])
 @require_login
 def destinations_tokyo():
     """Individual Tokyo Destinations Page"""
 
-    return render_template('tokyo.html')
+    location = Location.query.get_or_404(1)            
+    
+    form = BookedTrips()
+    if form.validate_on_submit():
+        if form.booking.data:
+            booked_package.add(location.city)
+            flash(f"Succesfully booked your {location.country} trip! View in your profile")
+        return redirect('/voyagr/tokyo')
+
+    return render_template('tokyo.html', form=form)
 
 @app.route('/voyagr/rome')
 @require_login
@@ -136,33 +152,24 @@ def user_show(user_id):
     """Show User Profile"""
 
     user = User.query.get_or_404(user_id)
-    form = EditProfileForm()
 
-    return render_template('user.html', user=user)
+    return render_template('user.html', user=user, booked_package=booked_package)
 
 @app.route('/voyagr/users/<int:user_id>/edit', methods=["GET", "POST"])
 @require_login
-def user_edit(user_id):
+def user_update(user_id):
     """Edit a User"""
 
     user = User.query.get_or_404(user_id)
-    form = EditProfileForm(username=user.username, password=user.password, image_url=user.image_url)
+    form = EditProfileForm(username=user.username, image_url=user.image_url)
 
     if form.validate_on_submit():
-        # Check if password is correct
-        if User.authenticate(user.username, user.password):
-            user.username = form.username.data
-            user.password = form.password.data
-            user.image_url = form.image_url.data or user.image_url #if no image_url, use current image_url
+        user.username = form.username.data
+        user.image_url = form.image_url.data or user.image_url #if no image_url, use current image_url
 
-            edited_user = User.edit(user.username, user.password)
-            db.session.add(edited_user)
-            db.session.commit()
+        db.session.commit()
 
-            return redirect(f"/voyagr/users/{user.id}")
-        else:
-            flash("Invalid password, please try again.", "danger")
-            return redirect(f"/voyagr/users/{user.id}/edit")
+        return redirect(f"/voyagr/users/{user.id}")
     
     return render_template("user_edit.html", form=form, user=user)
 

@@ -4,7 +4,7 @@
 
 
 <div class=" -mt-20">
-    <img src="https://screen-api.vizeater.co/files/1279057/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" id="bimg" class="absolute z-0 inset-0 object-cover w-full h-full mix-blend-overlay" alt="">
+    <img src="https://www.passengerterminaltoday.com/wp-content/uploads/2018/07/bags_plane.jpg" id="bimg" class="absolute z-0 inset-0 object-cover w-full h-full mix-blend-overlay" alt="">
     <nav class="text-white z-10" id="destine">
         <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
         <ul>
@@ -41,8 +41,12 @@
                     </a>
                 </div>
                 <div class="w-full mt-20 max-w-xl xl:px-8 xl:w-5/12">
-                    <div class="header2 animated animatedFadeInUp fadeInUp bg-white rounded shadow-2xl p-7 sm:p-10">
+                    <div class="header2 animated animatedFadeInUp fadeInUp bg-gray-500 rounded shadow-2xl p-7 sm:p-10">
+                        {% if user.image_url %}
+                        <img class="object-cover rounded" src="{{user.image_url}}" alt="">
+                        {% else %}
                         <img class="object-cover rounded" src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg" alt="">
+                        {% endif %}
                         <a href="/voyagr/users/{{user.id}}/edit" class="animated animatedFadeInUp fadeInUp mt-6 border-orange-100 border-t-2 border-b-2 border-l-2 border-r-2 py-2.5
                                  inline-flex items-center justify-center 
                                 w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full 
@@ -56,5 +60,35 @@
         </div>
     </div>
 </div>
+<div class="bg-white mt-16">
+    <div class="px-4 py-16 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
+        <h1 class="animated animatedFadeInUp fadeInUp text-orange-700 text-5xl text-center font-sans font-bold tracking-tight sm:text-4xl sm:leading-none ">Booked Trips</h1>
+        <div class="w-full max-w-xl mt-10 xl:px-6 xl:w-5/12">
+            {% for package in booked_package %}
+                {% if package %}
+                    <a aria-label="View Item" class="Japan">
+                        <div class="animated animatedFadeInUp fadeInUp relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
+                            <img src="https://screen-api.vizeater.co/files/1279075/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
+                            <div class="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                                <h1 class="mb-4 text-4xl font-bold text-orange-700">Tokyo</h1>
+                                <h5 class="animated animatedFadeInUp fadeInUp mb-4 text-white text-sm font-bold leading-none ">Asakusa Tour</h5>
+                                <p class="text-xs text-orange-700 font-semibold">Asakusa is one of Tokyo's most favorite places among tourists. See various spots such as - River Sumida and the Kaminarimon Gate.</p>
+                                <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-sm font-bold leading-none ">Experience Izakaya With A Mini Food Tour</h5>
+                                <p class="text-xs text-orange-700 mt-2 font-semibold">Dine out in Japan's signature Izakaya eateries with a unique blend of typical bar snacks and gourmet dishes.</p>
+
+                                <h5 class="animated animatedFadeInUp fadeInUp mt-4 text-white text-sm font-bold leading-none ">Unguided Exploration</h5>
+                                <a href="/voyagr/tokyo" class="bg-transparent rounded-3xl py-2 px-2 font-bold inline-block 
+                                text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border mt-5 animated animatedFadeInUp fadeInUp">Visit this destination</a>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+
 
 {% endblock %}

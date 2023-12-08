@@ -21,7 +21,13 @@
     inline-block hover:bg-transparent hover:border-orange-400 
     text-white duration-300 hover:border border border-transparent">Book a trip</a>
 </nav> 
+
 <div class="h-full px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+    <span>
+        {% for msg in get_flashed_messages() %}
+            <p class="text-orange-700 font-semibold text-2xl font-sans">{{msg}}</p>
+        {% endfor %}
+    </span>
     <div class="grid gap-10 lg:grid-cols-2">
         <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
             <div class="max-w-xl mb-6">
@@ -53,7 +59,7 @@
                 <h5 class="animated animatedFadeInUp fadeInUp mb-4 text-xl font-bold leading-none sm:text-2xl">Asakusa Tour</h5>
                 <div class="relative pr-8">
                     <p class="animated animatedFadeInUp fadeInUp text-base text-gray-700 md:text-lg">
-                        Without a doubt, Asakusa is one of Tokyo's most favorite places among tourists. Walking through this neighborhood with me you can know more deeply. - River Sumida with the view of the Sky Tree Tower - Viewpoint of the Asakusa Tourist Information Center - Kaminarimon Gate - Nakamise Street - Sensoji Temple - Asakusa Shrine
+                        Without a doubt, Asakusa is one of Tokyo's most favorite places among tourists. Walk through this neighborhood with me and can know more about:  River Sumida with the view of the Sky Tree Tower - Viewpoint of the Asakusa Tourist Information Center - Kaminarimon Gate - Nakamise Street - Sensoji Temple - Asakusa Shrine
                     </p>
                 </div>
             </div>
@@ -225,7 +231,26 @@
                             <p class="font-medium text-white">Resort with pool, spa, and buffet</p>
                         </li>
                     </ul>
-                    <button class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none">Book Now</button>
+                    <form method="POST">
+                        {{ form.hidden_tag() }}
+
+                        {% for field in form
+                        if field.widget.input_type != 'hidden' %}
+                    
+                            {{field(class_="inline-flex cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
+                            <!-- <button type="submit" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none">Book Now</button> -->
+
+
+                            {% for error in field.errors %}
+                            {{error}}
+                            {% endfor %}
+                        
+                        {% endfor %}
+                    </form>
+                    <!-- <form method="post">
+                        <button type="submit" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none">Book Now</button>
+                        
+                    </form> -->
                 </div>
             </div>
         </div>
