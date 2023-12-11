@@ -60,35 +60,38 @@
         </div>
     </div>
 </div>
-<div class="bg-white mt-16">
-    <div class="px-4 py-16 mx-auto sm:max-w-full md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 ">
-        <h1 class="animated animatedFadeInUp fadeInUp text-orange-700 text-5xl text-center font-sans font-bold tracking-tight sm:text-4xl sm:leading-none ">Booked Trips</h1>
-        <div class="w-full max-w-xl mt-10 xl:px-6 xl:w-5/12">
-            {% for package in booked_package %}
-                {% if package %}
-                    <a aria-label="View Item" class="Japan">
+<div class="bg-white">
+    <h1 class="animated animatedFadeInUp fadeInUp text-orange-700 text-5xl text-center font-sans font-bold tracking-tight sm:text-4xl sm:leading-none ">Booked Trips</h1>
+    <div class="px-8 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div class="grid gap-12 row-gap-8 lg:grid-cols-2">
+            {% for package in range((booked_package)|length) %}
+                <div class="mt-5 ">
+                    <a aria-label="View Item" class="">
                         <div class="animated animatedFadeInUp fadeInUp relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                            <img src="https://screen-api.vizeater.co/files/1279075/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
+                            <img src="{{booked_trips[package].trip.photo}}" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
                             <div class="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                                <h1 class="mb-4 text-4xl font-bold text-orange-700">Tokyo</h1>
-                                <h5 class="animated animatedFadeInUp fadeInUp mb-4 text-white text-sm font-bold leading-none ">Asakusa Tour</h5>
-                                <p class="text-xs text-orange-700 font-semibold">Asakusa is one of Tokyo's most favorite places among tourists. See various spots such as - River Sumida and the Kaminarimon Gate.</p>
-                                <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-sm font-bold leading-none ">Experience Izakaya With A Mini Food Tour</h5>
-                                <p class="text-xs text-orange-700 mt-2 font-semibold">Dine out in Japan's signature Izakaya eateries with a unique blend of typical bar snacks and gourmet dishes.</p>
-
-                                <h5 class="animated animatedFadeInUp fadeInUp mt-4 text-white text-sm font-bold leading-none ">Unguided Exploration</h5>
+                                <h1 class="mb-4 text-4xl font-bold text-orange-700">{{booked_trips[package].trip.location.city}}</h1>
+                                <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
                                 <a href="/voyagr/tokyo" class="bg-transparent rounded-3xl py-2 px-2 font-bold inline-block 
                                 text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border mt-5 animated animatedFadeInUp fadeInUp">Visit this destination</a>
                             </div>
                         </div>
                     </a>
-                {% endif %}
-            {% endfor %}
+                </div>
+                <div class="flex flex-col justify-center text-right">
+                    <div class="max-w-xl mb-6">
+                        <h2 class="animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">{{booked_trips[package].trip.location.city}}</h2>
+                        <p class="animated animatedFadeInUp fadeInUp text-base text-gray-900 md:text-base">{{booked_trips[package].trip.description}}</p>
+                    </div>
+    
+                </div>
+    
+            
+        {% endfor %}
+            
         </div>
     </div>
 
 </div>
-
-
 
 {% endblock %}

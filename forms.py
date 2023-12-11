@@ -21,5 +21,10 @@ class BookedTrips(FlaskForm):
 
     booking = SubmitField("Book Now")
 
+class PremiumBookedTrips(FlaskForm):
+    """Booking Trips Button"""
+
+    premium_booking = SubmitField("Book Now")
+
 
 

@@ -63,15 +63,20 @@ class Trip(db.Model):
     cost = db.Column(db.Float, nullable=False, unique=True)
 
 
+
 class Activity(db.Model):
     """Activity Model"""
 
     __tablename__ = 'activities'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
+    trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'))
     name = db.Column(db.Text, nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=True)
     description = db.Column(db.Text, nullable=True, default=None)
+
+    trip = db.relationship('Trip', backref='activity')
+
     
 class Location(db.Model):
     """Location Model"""
@@ -82,14 +87,21 @@ class Location(db.Model):
     city = db.Column(db.Text, nullable=False)
     country = db.Column(db.Text, nullable=False)
 
+    trip = db.relationship('Trip', backref='location')
+
 class Booked_Trip(db.Model):
     """Booked Trips Model"""
 
     __tablename__ = 'booked_trips'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     cost = db.Column(db.Float, db.ForeignKey('trips.cost'), nullable=False)
     booked_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    trip = db.relationship('Trip', backref='booked_trip')
+
     
     
     

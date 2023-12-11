@@ -1,7 +1,7 @@
 """Flask app for Voyagr"""
 from flask import Flask, render_template, request, jsonify, session, redirect, flash
-from models import db, connect_db, User, Trip, Location,  Activity
-from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips
+from models import db, connect_db, User, Trip, Location,  Activity, Booked_Trip
+from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips, PremiumBookedTrips
 # from API_helpers import get_pics, new_token
 from functools import wraps
 
@@ -107,44 +107,254 @@ booked_package = set()          #set so there's no duplicate bookings
 def destinations_tokyo():
     """Individual Tokyo Destinations Page"""
 
-    location = Location.query.get_or_404(1)            
+    location = Location.query.get_or_404(1)
+    trip = Trip.query.get_or_404(1)            
     
+    form1 = PremiumBookedTrips()
     form = BookedTrips()
     if form.validate_on_submit():
         if form.booking.data:
-            booked_package.add(location.city)
-            flash(f"Succesfully booked your {location.country} trip! View in your profile")
+            if location.city in booked_package:
+                print("Already in booked_package so we print this!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+
         return redirect('/voyagr/tokyo')
+    
+    return render_template('tokyo.html', form=form, form1=form1)
 
-    return render_template('tokyo.html', form=form)
+@app.route('/voyagr/tokyo/prem', methods=["POST"])
+@require_login
+def destinations_tokyo_p():
+    """Individual Tokyo Destinations Page"""
 
-@app.route('/voyagr/rome')
+    location = Location.query.get_or_404(1)
+    trip = Trip.query.get_or_404(1)            
+
+    form = BookedTrips()
+    form1 = PremiumBookedTrips()
+    if form1.validate_on_submit():
+        if form1.premium_booking.data:
+            if location.city in booked_package:
+                print("Already in booked_package so we print this!")
+            else:
+                booked_package.add(f"{location.city}P")
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} premium trip! View in your profile")
+        
+        return redirect('/voyagr/tokyo')
+    
+    return render_template('tokyo.html', form1=form1, form=form)
+
+@app.route('/voyagr/rome', methods=["GET", "POST"])
 @require_login
 def destinations_rome():
     """Individual Rome Destinations Page"""
 
-    return render_template('rome.html')
+    location = Location.query.get_or_404(2)
+    trip = Trip.query.get_or_404(2)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form.validate_on_submit():
+        if form.booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
 
-@app.route('/voyagr/giza')
+        return redirect('/voyagr/rome')
+
+    return render_template('rome.html', form=form, form1=form1)
+
+@app.route('/voyagr/rome/prem', methods=["POST"])
+@require_login
+def destinations_rome_p():
+    """Individual Rome Destinations Page"""
+
+    location = Location.query.get_or_404(2)
+    trip = Trip.query.get_or_404(2)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form1.validate_on_submit():
+        if form1.premium_booking.data:
+            if location.city in booked_package:
+                flash("Already booked!")
+            else:
+                booked_package.add(f"{location.city}P")
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} premium trip! View in your profile")
+
+        return redirect('/voyagr/rome')
+
+    return render_template('rome.html', form=form, form1=form1)
+
+@app.route('/voyagr/giza', methods=["GET", "POST"])
 @require_login
 def destinations_giza():
     """Individual Giza Pyramids Destinations Page"""
 
-    return render_template('giza.html')
+    location = Location.query.get_or_404(5)
+    trip = Trip.query.get_or_404(5)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form.validate_on_submit():
+        if form.booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
 
-@app.route('/voyagr/paris')
+        return redirect('/voyagr/giza')
+
+
+    return render_template('giza.html', form=form, form1=form1)
+
+@app.route('/voyagr/giza/prem', methods=["POST"])
+@require_login
+def destinations_giza_p():
+    """Individual Giza Pyramids Destinations Page"""
+
+    location = Location.query.get_or_404(5)
+    trip = Trip.query.get_or_404(5)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form1.validate_on_submit():
+        if form1.premium_booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+
+        return redirect('/voyagr/giza')
+
+
+    return render_template('giza.html', form=form, form1=form1)
+
+@app.route('/voyagr/paris', methods=["GET", "POST"])
 @require_login
 def destinations_paris():
     """Individual Paris Destinations Page"""
 
-    return render_template('paris.html')
+    location = Location.query.get_or_404(3)
+    trip = Trip.query.get_or_404(3)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form.validate_on_submit():
+        if form.booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
 
-@app.route('/voyagr/dubai')
+        return redirect('/voyagr/paris')
+
+
+    return render_template('paris.html', form=form, form1=form1)
+
+@app.route('/voyagr/paris/prem', methods=["POST"])
+@require_login
+def destinations_paris_p():
+    """Individual Paris Destinations Page"""
+
+    location = Location.query.get_or_404(3)
+    trip = Trip.query.get_or_404(3)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form1.validate_on_submit():
+        if form1.premium_booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+
+        return redirect('/voyagr/paris')
+
+
+    return render_template('paris.html', form=form, form1=form1)
+
+@app.route('/voyagr/dubai', methods=["GET", "POST"])
 @require_login
 def destinations_dubai():
     """Individual Dubai Destinations Page"""
 
-    return render_template('dubai.html')
+    location = Location.query.get_or_404(4)
+    trip = Trip.query.get_or_404(4)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form.validate_on_submit():
+        if form.booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+
+        return redirect('/voyagr/dubai')
+
+    return render_template('dubai.html', form=form, form1=form1)
+
+@app.route('/voyagr/dubai/prem', methods=["POST"])
+@require_login
+def destinations_dubai_p():
+    """Individual Dubai Destinations Page"""
+
+    location = Location.query.get_or_404(4)
+    trip = Trip.query.get_or_404(4)            
+    
+    form1 = PremiumBookedTrips()
+    form = BookedTrips()
+    if form1.validate_on_submit():
+        if form1.premium_booking.data:
+            if location.city in booked_package:
+                print("Already booked!")
+            else:
+                booked_package.add(location.city)
+                booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
+                db.session.add(booked_trip)
+                db.session.commit()
+                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+
+        return redirect('/voyagr/dubai')
+
+    return render_template('dubai.html', form=form, form1=form1)
 
 @app.route('/voyagr/users/<int:user_id>')
 @require_login
@@ -152,6 +362,12 @@ def user_show(user_id):
     """Show User Profile"""
 
     user = User.query.get_or_404(user_id)
+    if booked_package:
+        booked_trips = Booked_Trip.query.filter(Booked_Trip.user_id == user.id).all()
+
+        activities = Activity.query.all()
+        return render_template('user.html', user=user, booked_package=booked_package, booked_trips=booked_trips, activities=activities)
+    
 
     return render_template('user.html', user=user, booked_package=booked_package)
 
@@ -168,7 +384,6 @@ def user_update(user_id):
         user.image_url = form.image_url.data or user.image_url #if no image_url, use current image_url
 
         db.session.commit()
-
         return redirect(f"/voyagr/users/{user.id}")
     
     return render_template("user_edit.html", form=form, user=user)

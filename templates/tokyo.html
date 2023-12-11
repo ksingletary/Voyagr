@@ -193,7 +193,21 @@
                             <p class="font-medium text-gray-800">Mini food tour</p>
                         </li>
                     </ul>
-                    <button class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none">Book Now</button>
+                    <form action="{{ url_for('destinations_tokyo') }}" method="POST">
+                        {{ form.hidden_tag() }}
+
+                        {% for field in form
+                        if field.widget.input_type != 'hidden' %}
+                    
+                            {{field(class_="inline-flex cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
+
+
+                            {% for error in field.errors %}
+                            {{error}}
+                            {% endfor %}
+                        
+                        {% endfor %}
+                    </form>
                 </div>
             </div>
             <div>
@@ -231,14 +245,13 @@
                             <p class="font-medium text-white">Resort with pool, spa, and buffet</p>
                         </li>
                     </ul>
-                    <form method="POST">
-                        {{ form.hidden_tag() }}
+                    <form action="{{ url_for('destinations_tokyo_p') }}" method="POST">
+                        {{ form1.hidden_tag() }}
 
-                        {% for field in form
+                        {% for field in form1
                         if field.widget.input_type != 'hidden' %}
                     
                             {{field(class_="inline-flex cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
-                            <!-- <button type="submit" class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none">Book Now</button> -->
 
 
                             {% for error in field.errors %}
