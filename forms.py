@@ -27,4 +27,7 @@ class PremiumBookedTrips(FlaskForm):
     premium_booking = SubmitField("Book Now")
 
 
+    
+
+
 

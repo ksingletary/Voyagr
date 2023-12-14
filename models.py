@@ -61,21 +61,19 @@ class Trip(db.Model):
     description = db.Column(db.Text, nullable=True, default=None)
     photo = db.Column(db.Text, nullable=True, default=None)
     cost = db.Column(db.Float, nullable=False, unique=True)
-
-
+    activity_link = db.Column(db.Text, nullable=False, default=None)
+    activity_link1 = db.Column(db.Text, nullable=False, default=None)
+    activity_link2 = db.Column(db.Text, nullable=False, default=None)
 
 class Activity(db.Model):
     """Activity Model"""
 
     __tablename__ = 'activities'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
-    trip_id = db.Column(db.Integer, db.ForeignKey('trips.id'))
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.Text, nullable=False)
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id'), nullable=True)
     description = db.Column(db.Text, nullable=True, default=None)
-
-    trip = db.relationship('Trip', backref='activity')
 
     
 class Location(db.Model):
@@ -83,7 +81,7 @@ class Location(db.Model):
 
     __tablename__ = 'locations'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     city = db.Column(db.Text, nullable=False)
     country = db.Column(db.Text, nullable=False)
 

@@ -1,93 +1,146 @@
 import requests
-# from secret import KEY, API_SECRET
 from dotenv import load_dotenv
 import os
+import random
 
 API_BASE_URL = "https://test.api.amadeus.com/v1"
 
-# def configure():
-#     load_dotenv()
+def configure():
+    load_dotenv()
 
-# configure()
+configure()
 
-# def new_token():
-#     """Generate new token after each request. Exp: 30 minutes"""
+def new_token():
+    """Generate new token after each request. Exp: 30 minutes"""
 
-#     data = {
-#     'grant_type': 'client_credentials',
-#     'client_id': os.getenv('KEY'),
-#     'client_secret': os.getenv('API_SECRET')
-#     }
+    data = {
+    'grant_type': 'client_credentials',
+    'client_id': os.getenv('KEY'),
+    'client_secret': os.getenv('API_SECRET')
+    }
 
-#     response = requests.post('https://test.api.amadeus.com/v1/security/oauth2/token', data=data)
-#     data = response.json()
-#     new_token = data['access_token']
-#     return new_token
+    response = requests.post('https://test.api.amadeus.com/v1/security/oauth2/token', data=data)
+    data = response.json()
+    new_token = data['access_token']
+    return new_token
     
-# token = new_token()
+token = new_token()
 
 
-# def get_pics():
-#     """API calls for Pics on home page"""
-#     headers = {
-#     'accept': 'application/vnd.amadeus+json',
-#     'Authorization': f'Bearer {token}',
-#     }
+def get_tokyo_pics():
+    """API calls for Pics on pics page"""
+    headers = {
+    'accept': 'application/vnd.amadeus+json',
+    'Authorization': f'Bearer {token}',
+    }
 
-#     params = {
-#         'latitude': '35.710518',
-#         'longitude': '139.797733'
-#     }
+    params = {
+        'latitude': '35.710518',
+        'longitude': '139.797733',
+        'radius': '10'
+    }
 
-#     response = requests.get(f'{API_BASE_URL}/shopping/activities/3269072', params=params, headers=headers)
-#     data = response.json()
-#     pictures = data['data']['pictures']
-#     req_pic_ident = '4iog'              #api randomizes pictures list, so we use pic link identifier to get correct pic
+    response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
+    data = response.json()
+    numb_rand = random.randrange(1,5)
+    pics = []
+    for pic in data['data'][numb_rand]['pictures']:
+        pics.append(pic)
+        if len(pics) == 12:
+            break
+    return pics
 
-#     my_pic1 = ''
+def get_rome_pics():
+    """API calls for Pics on pics page"""
+    headers = {
+    'accept': 'application/vnd.amadeus+json',
+    'Authorization': f'Bearer {token}',
+    }
 
-#     for pic in pictures:
-#         if req_pic_ident in pic:
-#             my_pic1 = pic
+    params = {
+        'latitude': '41.9028',
+        'longitude': '12.4964',
+        'radius': '20'
+    }
 
-#     response2 = requests.get(f'{API_BASE_URL}/shopping/activities/6379055', headers=headers)
-#     data2 = response2.json()
-#     pictures_list_2 = data2['data']['pictures']
-#     req_pic_ident2 = '1453892'   
+    response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
+    data = response.json()
+    numb_rand = random.randrange(1,10)
+    pics = []
+    for pic in data['data'][numb_rand]['pictures']:
+        pics.append(pic)
+        if len(pics) == 12:
+            break
+    return pics
 
-#     my_pic2 = ''
+def get_paris_pics():
+    """API calls for Pics on pics page"""
+    headers = {
+    'accept': 'application/vnd.amadeus+json',
+    'Authorization': f'Bearer {token}',
+    }
 
-#     for pic2 in pictures_list_2:
-#         if req_pic_ident2 in pic2:
-#             my_pic2 = pic2  
+    params = {
+        'latitude': '48.8566',
+        'longitude': '2.3522',
+        'radius': '10'
+    }
 
-#     response3 = requests.get(f'{API_BASE_URL}/shopping/activities/6378693', headers=headers)
-#     data3 = response3.json()
-#     pictures_list_3 = data3['data']['pictures']
-#     description = data3['data']['description']
-#     req_pic_ident3 = '1277167'   
+    response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
+    data = response.json()
+    numb_rand = random.randrange(1,10)
+    pics = []
+    for pic in data['data'][numb_rand]['pictures']:
+        pics.append(pic)
+        if len(pics) == 12:
+            break
+    return pics
 
-#     parsed_description = description[0:219].replace('<br>', '')     #descr too long. decided to shorten
+def get_dubai_pics():
+    """API calls for Pics on pics page"""
+    headers = {
+    'accept': 'application/vnd.amadeus+json',
+    'Authorization': f'Bearer {token}',
+    }
 
-#     my_pic3 = ''
+    params = {
+        'latitude': '25.2048',
+        'longitude': '55.2708',
+        'radius': '20'
+    }
 
-#     for pic3 in pictures_list_3:
-#         if req_pic_ident3 in pic3:
-#             my_pic3 = pic3 
+    response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
+    data = response.json()
+    numb_rand = random.randrange(0,4)
+    pics = []
+    for pic in data['data'][numb_rand]['pictures']:
+        pics.append(pic)
+        if len(pics) == 12:
+            break
+    return pics
 
-#     response4 = requests.get(f'{API_BASE_URL}/shopping/activities/3270871', headers=headers)
-#     data4 = response4.json()
-#     pictures_list_4 = data4['data']['pictures']
-#     req_pic_ident4 = 'iupz'   
+def get_egypt_pics():
+    """API calls for Pics on pics page"""
+    headers = {
+    'accept': 'application/vnd.amadeus+json',
+    'Authorization': f'Bearer {token}',
+    }
 
-#     my_pic4 = ''
+    params = {
+        'latitude': '29.9792',
+        'longitude': '31.1342',
+        'radius': '20'
+    }
 
-#     for pic4 in pictures_list_4:
-#         if req_pic_ident4 in pic4:
-#             my_pic4 = pic4
-
-
-#     return my_pic1, my_pic2, my_pic3, parsed_description, my_pic4
+    response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
+    data = response.json()
+    numb_rand = random.randrange(1,7)
+    pics = []
+    for pic in data['data'][numb_rand]['pictures']:
+        pics.append(pic)
+        if len(pics) == 12:
+            break
+    return pics
 
 
  

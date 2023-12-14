@@ -65,29 +65,64 @@
     <div class="px-8 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div class="grid gap-12 row-gap-8 lg:grid-cols-2">
             {% for package in range((booked_package)|length) %}
-                <div class="mt-5 ">
-                    <a aria-label="View Item" class="">
-                        <div class="animated animatedFadeInUp fadeInUp relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
-                            <img src="{{booked_trips[package].trip.photo}}" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
-                            <div class="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
-                                <h1 class="mb-4 text-4xl font-bold text-orange-700">{{booked_trips[package].trip.location.city}}</h1>
-                                <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
-                                <a href="/voyagr/tokyo" class="bg-transparent rounded-3xl py-2 px-2 font-bold inline-block 
-                                text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border mt-5 animated animatedFadeInUp fadeInUp">Visit this destination</a>
+                {% if 'P' in new_booked_packaged[package-1] %}
+                    <div class="mt-5 ">
+                        <a aria-label="View Item" class="">
+                            <div class="animated animatedFadeInUp fadeInUp border-4 border-orange-700 relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
+                                <img src="{{booked_trips[package].trip.photo}}" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
+                                <div class="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                                    <h1 class="mb-4 text-4xl font-bold text-orange-700">{{booked_trips[package].trip.location.city}}</h1>
+                                    <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
+                                    <a href="/voyagr/pics" class="bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
+                                    text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">Explore Photos</a>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex flex-col justify-center text-right">
-                    <div class="max-w-xl mb-6">
-                        <h2 class="animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">{{booked_trips[package].trip.location.city}}</h2>
-                        <p class="animated animatedFadeInUp fadeInUp text-base text-gray-900 md:text-base">{{booked_trips[package].trip.description}}</p>
+                        </a>
                     </div>
-    
-                </div>
-    
-            
-        {% endfor %}
+                    <div class="flex flex-col justify-center text-right">
+                        <div class="max-w-xl mb-6">
+                            <h2 class="animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">{{booked_trips[package].trip.location.city}}</h2>
+                            <p class="animated animatedFadeInUp fadeInUp text-base text-gray-900 md:text-base">{{booked_trips[package].trip.description}}</p>
+                            <h4 class="animated animatedFadeInUp fadeInUp mt-12 max-w-lg font-sans text-2xl font-bold tracking-tight text-orange-700 sm:leading-none">Want to book individual activities?</h4>
+
+                            <a href="{{trip[package].activity_link}}" class="rounded-3xl mt-10 py-2 px-2 font-bold inline-block 
+                                    text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border  animated animatedFadeInUp fadeInUp">See Activity</a>
+                            <a href="{{trip[package].activity_link1}}" class="rounded-3xl mt-10 py-2 px-2 font-bold inline-block 
+                            text-orange-700 duration-300 ml-8 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">See Activity</a> 
+                            <a href="{{trip[package].activity_link2}}" class="rounded-3xl mt-10 py-2 px-2 font-bold inline-block 
+                            text-orange-700 duration-300 ml-8 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">See Activity</a>       
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="mt-5 ">
+                        <a aria-label="View Item" class="">
+                            <div class="animated animatedFadeInUp fadeInUp relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
+                                <img src="{{booked_trips[package].trip.photo}}" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
+                                <div class="absolute inset-0 px-6 py-4 transition-opacity duration-200 bg-black bg-opacity-75 opacity-0 hover:opacity-100">
+                                    <h1 class="mb-4 text-4xl font-bold text-orange-700">{{booked_trips[package].trip.location.city}}</h1>
+                                    <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
+                                    <a href="/voyagr/pics" class="bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
+                                    text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">Explore Photos</a>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex flex-col justify-center text-right">
+                        <div class="max-w-xl ">
+                            <h2 class="animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">{{booked_trips[package].trip.location.city}}</h2>
+                            <p class="animated animatedFadeInUp fadeInUp text-base text-gray-900 md:text-base">{{booked_trips[package].trip.description}}</p>
+                            <h4 class="animated animatedFadeInUp fadeInUp mt-12 max-w-lg font-sans text-2xl font-bold tracking-tight text-orange-700 sm:leading-none">Want to book individual activities?</h4>
+
+                            <a href="{{trip[package].activity_link}}" class="rounded-3xl mt-10 py-2 px-2 font-bold inline-block 
+                                    text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border  animated animatedFadeInUp fadeInUp">See Activity</a>
+                            <a href="{{trip[package].activity_link1}}" class="rounded-3xl mt-10 py-2 px-2 font-bold inline-block 
+                            text-orange-700 duration-300 ml-8 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">See Activity</a> 
+                            <a href="{{trip[package].activity_link2}}" class="rounded-3xl mt-10 py-2 px-2 font-bold inline-block 
+                            text-orange-700 duration-300 ml-8 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">See Activity</a>       
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
             
         </div>
     </div>

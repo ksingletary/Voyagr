@@ -1,8 +1,8 @@
 """Flask app for Voyagr"""
-from flask import Flask, render_template, request, jsonify, session, redirect, flash
+from flask import Flask, render_template, request, session, redirect, flash
 from models import db, connect_db, User, Trip, Location,  Activity, Booked_Trip
 from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips, PremiumBookedTrips
-# from API_helpers import get_pics, new_token
+from API_helpers import get_tokyo_pics, get_rome_pics, get_paris_pics, get_dubai_pics, get_egypt_pics
 from functools import wraps
 
 
@@ -243,11 +243,11 @@ def destinations_giza_p():
             if location.city in booked_package:
                 print("Already booked!")
             else:
-                booked_package.add(location.city)
+                booked_package.add(f"{location.city}P")
                 booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
                 db.session.add(booked_trip)
                 db.session.commit()
-                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+                flash(f"Succesfully booked your {location.country} premium trip! View in your profile")
 
         return redirect('/voyagr/giza')
 
@@ -295,11 +295,11 @@ def destinations_paris_p():
             if location.city in booked_package:
                 print("Already booked!")
             else:
-                booked_package.add(location.city)
+                booked_package.add(f"{location.city}P")
                 booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
                 db.session.add(booked_trip)
                 db.session.commit()
-                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+                flash(f"Succesfully booked your {location.country} premium trip! View in your profile")
 
         return redirect('/voyagr/paris')
 
@@ -346,11 +346,11 @@ def destinations_dubai_p():
             if location.city in booked_package:
                 print("Already booked!")
             else:
-                booked_package.add(location.city)
+                booked_package.add(f"{location.city}P")
                 booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
                 db.session.add(booked_trip)
                 db.session.commit()
-                flash(f"Succesfully booked your {location.country} trip! View in your profile")
+                flash(f"Succesfully booked your {location.country} premium trip! View in your profile")
 
         return redirect('/voyagr/dubai')
 
@@ -364,12 +364,14 @@ def user_show(user_id):
     user = User.query.get_or_404(user_id)
     if booked_package:
         booked_trips = Booked_Trip.query.filter(Booked_Trip.user_id == user.id).all()
-
+        new_booked_packaged = list(booked_package)
+        # call trip where location id is equall to bookedtrip location id            
+        trip = Trip.query.filter(Trip.location_id == Booked_Trip.location_id).all()
         activities = Activity.query.all()
-        return render_template('user.html', user=user, booked_package=booked_package, booked_trips=booked_trips, activities=activities)
+        return render_template('user.html', user=user, trip=trip, booked_package=booked_package, booked_trips=booked_trips, activities=activities, new_booked_packaged=new_booked_packaged)
     
-
     return render_template('user.html', user=user, booked_package=booked_package)
+
 
 @app.route('/voyagr/users/<int:user_id>/edit', methods=["GET", "POST"])
 @require_login
@@ -387,6 +389,58 @@ def user_update(user_id):
         return redirect(f"/voyagr/users/{user.id}")
     
     return render_template("user_edit.html", form=form, user=user)
+
+@app.route('/voyagr/pics')
+@require_login
+def see_pics_page_tokyo():
+    """Showing Pictures through API request"""
+
+    pics = get_tokyo_pics()
+    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+
+    return render_template('pictures.html', pics=pics)
+
+@app.route('/voyagr/pics/rome')
+@require_login
+def see_pics_page_rome():
+    """Showing Pictures through API request"""
+
+    pics1 = get_rome_pics()
+    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+
+    return render_template('pictures_rome.html', pics1=pics1)
+
+@app.route('/voyagr/pics/paris')
+@require_login
+def see_pics_page_paris():
+    """Showing Pictures through API request"""
+
+    pics2 = get_paris_pics()
+    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+
+    return render_template('pictures_paris.html', pics2=pics2)
+
+@app.route('/voyagr/pics/dubai')
+@require_login
+def see_pics_page_dubai():
+    """Showing Pictures through API request"""
+
+    pics3 = get_dubai_pics()
+    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+
+    return render_template('pictures_dubai.html', pics3=pics3)
+
+@app.route('/voyagr/pics/egypt')
+@require_login
+def see_pics_page_egypt():
+    """Showing Pictures through API request"""
+
+    pics4 = get_egypt_pics()
+    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+
+    return render_template('pictures_egypt.html', pics4=pics4)
+
+
 
 
 
