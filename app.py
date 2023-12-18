@@ -7,8 +7,7 @@ from functools import wraps
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://wnmanvsrpaymnk:828bbcd9ed2a85e432dc72bc2fe5909c732ce0a320266c826f0dcb117c1c9a92@ec2-44-215-40-87.compute-1.amazonaws.com:5432/d4v5hovun8m6b2'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///voyagr'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///voyagr'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.secret_key = 'not_telling_you!'
