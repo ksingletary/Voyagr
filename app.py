@@ -4,10 +4,13 @@ from models import db, connect_db, User, Trip, Location,  Activity, Booked_Trip
 from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips, PremiumBookedTrips, CancelTrip
 from API_helpers import get_tokyo_pics, get_rome_pics, get_paris_pics, get_dubai_pics, get_egypt_pics
 from functools import wraps
+import os
+
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://itbqshlr:JhLN72gwOy4w3DWu3YFG37PigEpOqHbr@berry.db.elephantsql.com/itbqshlr'
+app.config['SQLALCHEMY_DATABASE_URI'] = (
+    os.environ.get('DATABASE_URL', 'postgresql:///voyagr'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.secret_key = 'not_telling_you!'
