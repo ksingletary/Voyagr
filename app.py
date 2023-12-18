@@ -7,7 +7,7 @@ from functools import wraps
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://itbqshlr:JhLN72gwOy4w3DWu3YFG37PigEpOqHbr@berry.db.elephantsql.com/itbqshlr'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://itbqshlr:JhLN72gwOy4w3DWu3YFG37PigEpOqHbr@berry.db.elephantsql.com/itbqshlr'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.secret_key = 'not_telling_you!'
