@@ -1,7 +1,7 @@
 """Flask app for Voyagr"""
 from flask import Flask, render_template, request, session, redirect, flash
 from models import db, connect_db, User, Trip, Location,  Activity, Booked_Trip
-from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips, PremiumBookedTrips
+from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips, PremiumBookedTrips, CancelTrip
 from API_helpers import get_tokyo_pics, get_rome_pics, get_paris_pics, get_dubai_pics, get_egypt_pics
 from functools import wraps
 
@@ -23,7 +23,7 @@ def home_page():
     """Home Page"""
 
     form = UpdatesForm()
-    descr = Trip.query.get_or_404(1)            #subscribe for updates form. won't send, but will flash success mssg.
+    descr = Trip.query.all()          #subscribe for updates form. won't send, but will flash success mssg.
 
     return render_template('home.html', form=form, descr=descr)
 
@@ -46,6 +46,8 @@ def require_login(f):
 
 @app.route('/voyagr/register', methods=["GET", "POST"])
 def register_user():
+    """Registration form"""
+
     form = UserForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -61,6 +63,8 @@ def register_user():
 
 @app.route('/voyagr/login', methods=["GET", "POST"])
 def login_user():
+    """Login User"""
+
     form = UserForm()
     if form.validate_on_submit():
         username = form.username.data
@@ -101,6 +105,7 @@ def destinations_page():
 
 global booked_package
 booked_package = set()          #set so there's no duplicate bookings
+canceled_package = set()        #recording of canceled trip for user
 
 @app.route('/voyagr/tokyo', methods=["GET", "POST"])
 @require_login
@@ -114,7 +119,7 @@ def destinations_tokyo():
     form = BookedTrips()
     if form.validate_on_submit():
         if form.booking.data:
-            if location.city in booked_package:
+            if location.city in booked_package:         #if city is already in booked_package 
                 print("Already in booked_package so we print this!")
             else:
                 booked_package.add(location.city)
@@ -356,19 +361,30 @@ def destinations_dubai_p():
 
     return render_template('dubai.html', form=form, form1=form1)
 
-@app.route('/voyagr/users/<int:user_id>')
+@app.route('/voyagr/users/<int:user_id>', methods=["GET", "POST"])
 @require_login
 def user_show(user_id):
     """Show User Profile"""
 
     user = User.query.get_or_404(user_id)
     if booked_package:
-        booked_trips = Booked_Trip.query.filter(Booked_Trip.user_id == user.id).all()
+        booked_trips = Booked_Trip.query.filter(Booked_Trip.user_id == user.id).all()           #call booked_trips for respective user id bookings
         new_booked_packaged = list(booked_package)
-        # call trip where location id is equall to bookedtrip location id            
+
+        # call trip where location id is equal to bookedtrip location id            
         trip = Trip.query.filter(Trip.location_id == Booked_Trip.location_id).all()
         activities = Activity.query.all()
-        return render_template('user.html', user=user, trip=trip, booked_package=booked_package, booked_trips=booked_trips, activities=activities, new_booked_packaged=new_booked_packaged)
+        form = CancelTrip()
+        if form.validate_on_submit():
+            canceled_package.add("Trip[x] Canceled")
+            flash("We have successfully canceled your trip! It may still appear in your profile, but it has been recorded!")
+            return redirect(f'/voyagr/users/{user.id}')
+        
+        return render_template('user.html', user=user, trip=trip, booked_package=booked_package, booked_trips=booked_trips, activities=activities, new_booked_packaged=new_booked_packaged, form=form)
+    
+    if user.id != session['username']:
+        return redirect(f"/voyagr/users/{session['username']}")
+
     
     return render_template('user.html', user=user, booked_package=booked_package)
 
@@ -396,7 +412,7 @@ def see_pics_page_tokyo():
     """Showing Pictures through API request"""
 
     pics = get_tokyo_pics()
-    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
 
     return render_template('pictures.html', pics=pics)
 
@@ -406,7 +422,7 @@ def see_pics_page_rome():
     """Showing Pictures through API request"""
 
     pics1 = get_rome_pics()
-    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
 
     return render_template('pictures_rome.html', pics1=pics1)
 
@@ -416,7 +432,7 @@ def see_pics_page_paris():
     """Showing Pictures through API request"""
 
     pics2 = get_paris_pics()
-    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
 
     return render_template('pictures_paris.html', pics2=pics2)
 
@@ -426,7 +442,7 @@ def see_pics_page_dubai():
     """Showing Pictures through API request"""
 
     pics3 = get_dubai_pics()
-    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
 
     return render_template('pictures_dubai.html', pics3=pics3)
 
@@ -436,7 +452,7 @@ def see_pics_page_egypt():
     """Showing Pictures through API request"""
 
     pics4 = get_egypt_pics()
-    flash("*Click location to generate new batch. Please refrain from making too many requests here. Voyagr appreciates your cooperation.")
+    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
 
     return render_template('pictures_egypt.html', pics4=pics4)
 

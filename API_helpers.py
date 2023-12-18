@@ -37,12 +37,12 @@ def get_tokyo_pics():
     params = {
         'latitude': '35.710518',
         'longitude': '139.797733',
-        'radius': '10'
+        'radius': '20'
     }
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randrange(1,5)
+    numb_rand = random.randrange(1,10)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
@@ -83,7 +83,7 @@ def get_paris_pics():
     params = {
         'latitude': '48.8566',
         'longitude': '2.3522',
-        'radius': '10'
+        'radius': '1'
     }
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)

@@ -5,16 +5,16 @@
 <nav class="text-white bg-gray-900">
     <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
     <ul>
-        <li><a href="/voyagr/about">About</a></li>
-        <li><a href="/voyagr/destinations">Destinations</a></li>
+        <li><a href="/voyagr/about" class="hover:text-orange-700">About</a></li>
+        <li><a href="/voyagr/destinations" class="hover:text-orange-700">Destinations</a></li>
         {% if session['username'] %}
-        <li><a href="/voyagr/login" class="hidden">Login</a></li>
+        <li><a href="/voyagr/login" class="hidden hover:text-orange-700">Login</a></li>
         {% else %}
-        <li><a href="/voyagr/login">Login</a></li>
+        <li><a href="/voyagr/login" class="hover:text-orange-700">Login</a></li>
         {% endif %}
         {% if session['username'] %}
-        <li><a href="/voyagr/users/{{session['username']}}">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="/voyagr/users/{{session['username']}}" class="hover:text-orange-700">Profile</a></li>
+        <li><a href="/logout" class="hover:text-orange-700">Logout</a></li>
         {% endif %}
     </ul>
     <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
@@ -31,16 +31,16 @@
         <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg">
             <div class="max-w-xl mb-6">
                 <h2 class="header animated animatedFadeInUp fadeInUp max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-orange-700 sm:text-4xl sm:leading-none">Dubai Package</h2>
-                <p class="header2 animated animatedFadeInUp fadeInUp text-base text-gray-800 md:text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim maiores aliquam ut officiis reprehenderit eveniet laborum, debitis excepturi, sequi non voluptate at velit autem deleniti ullam in impedit laudantium odio.</p>
+                <p class="header2 animated animatedFadeInUp fadeInUp text-base text-gray-800 md:text-lg">Dive into luxury, soak up the sun, and discover a city where opulence meets Arabian charm. This package is a magic carpet ride through the glitz and glamour of the Arabian playground.</p>
             </div>
         </div>
         <div class="flex items-center justify-center -mx-4 mt-20 lg:pl-8">
             <div class="header3 animated animatedFadeInUp fadeInUp flex flex-col itmes-end px-3">
                 <img class="object-cover mr-10 mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56" src="https://www.helipass.com/uploads/media/default/0001/04/60f9893e34ccc-img-723-jpeg.jpeg" alt="">
-                <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src="https://screen-api.vizeater.co/files/1277167/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" alt="">
+                <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src="https://www.shutterstock.com/image-photo/panorama-dubai-marina-sunset-600nw-687119689.jpg" alt="">
             </div>
             <div class="header4 animated animatedFadeInUp fadeInUp z-20 px-3 ">
-                <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80" src="https://screen-api.vizeater.co/files/1279075/-/preview/-/progressive/yes/-/format/jpeg/image.jpg" alt="">
+                <img class="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80" src="https://cdn.helicoptertourdubai.ae/helicopter_tour_dubai/blog/16864958955092-341.jpg" alt="">
             </div>
         </div>
     </div>
@@ -49,8 +49,8 @@
     <div class="max-w-screen-lg sm:mx-auto">
         <hr class="animated animatedFadeInUp fadeInUp bg-orange-700 text-orange-700 h-1 mb-20">
         <div class="mb-20 lg:mb-0">
-            <h2 class="animated animatedFadeInUp fadeInUp mb-4 text-3xl text-orange-700 font-bold leadingnone sm:text-4xl">From neon-lit skyscrapers, to historic temples</h2>
-            <p class="animated animatedFadeInUp fadeInUp mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint asperiores vel ex dicta neque quis totam repudiandae cum harum placeat! Ex ab optio cum neque sunt doloribus corrupti beatae odit!</p>
+            <h2 class="animated animatedFadeInUp fadeInUp mb-4 text-3xl text-orange-700 font-bold leadingnone sm:text-4xl">From dazzling skyscrapers to desert escapades...</h2>
+            <p class="animated animatedFadeInUp fadeInUp mb-6">Our package is your golden ticket to explore the futuristic wonders of the Burj Khalifa, haggle for treasures in vibrant souks, and cruise through desert dunes on thrilling safaris. With a dash of adventure and a sprinkle of luxury, this Dubai package is your passport to an unforgettable experience in the land of superlatives!</p>
             <p class="animated animatedFadeInUp fadeInUp mx-20 font-bold mb-20">Book with Voyagr and get...</p>
         </div>
         <div class="flex flex-col items-start py-4 transition duration-300 transform rounded sm:px-4 lg:flex-row sm:hover:translate-x-4 sm:hover:bg-orange-100">
@@ -78,7 +78,7 @@
                 <h5 class="animated animatedFadeInUp fadeInUp mb-4 text-xl font-bold leading-none sm:text-2xl">Unguided Exploration</h5>
                 <div class="relative pr-8">
                     <p class="animated animatedFadeInUp fadeInUp text-base text-gray-700 md:text-lg">
-                        It is your trip! You can choose to explore for yourself and visit all Tokyo has to offer.
+                        It is your trip! You can choose to explore for yourself and visit all Dubai has to offer.
                     </p>
                 </div>
             </div>
@@ -89,13 +89,13 @@
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
     <div class="grid gap-10 row-gap-8 lg:grid-cols-5">
         <div class="lg:col-span-2">
-            <p class="animated animatedFadeInUp fadeInUp mb-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">15 Apr 2023</p>
+            <p class="animated animatedFadeInUp fadeInUp mb-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">12 Jun 2023</p>
             <div class="mb-3">
                 <a aria-label="Article" class="inline-block text-black transition-colors duration-200 hover:text-orange-700">
-                    <p class="animated animatedFadeInUp fadeInUp font-sans text-xl text-orange-700 font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">Incredible.</p>
+                    <p class="animated animatedFadeInUp fadeInUp font-sans text-xl text-orange-700 font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">Luxury is an understatement</p>
                 </a>
             </div>
-            <p class="animated animatedFadeInUp fadeInUp mb-4 text-base text-gray-800 md:text-lg">"Just touched down from Tokyo - the city of endless surprises! 🇯🇵✨ #TokyoAdventures #UnforgettableJourney"</p>
+            <p class="animated animatedFadeInUp fadeInUp mb-4 text-base text-gray-800 md:text-lg">"The luxury shopping, vibrant nightlife, and warm hospitality made this trip unforgettable!"</p>
             <div class="animated animatedFadeInUp fadeInUp flex items-center">
                 <a aria-label="Authror" class="mr-3">
                     <img src="https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-02.jpg" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm">
@@ -108,13 +108,13 @@
         </div>
         <div class="flex flex-col space-y-8 lg:col-span-3">
             <div>
-                <p class="animated animatedFadeInUp fadeInUp mb-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">25 Aug 2023</p>
+                <p class="animated animatedFadeInUp fadeInUp mb-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">1 May 2023</p>
                 <div class="mb-3">
                     <a aria-label="Article" class="inline-block text-black transition-colors duration-200 hover:text-orange-700">
-                        <p class="animated animatedFadeInUp fadeInUp font-sans text-xl text-orange-700 font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">What an experience.</p>
+                        <p class="animated animatedFadeInUp fadeInUp font-sans text-xl text-orange-700 font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">Loved the Helitour</p>
                     </a>
                 </div>
-                <p class="animated animatedFadeInUp fadeInUp mb-4 text-base text-gray-800 md:text-lg">"From bustling streets to serene temples, this city never ceases to amaze. Until we meet again, sayonara!"</p>
+                <p class="animated animatedFadeInUp fadeInUp mb-4 text-base text-gray-800 md:text-lg">"A city that truly knows how to impress!"</p>
                 <div class="animated animatedFadeInUp fadeInUp flex items-center">
                     <a aria-label="Authror" class="mr-3">
                         <img src="https://dou0x1vlhajjl.cloudfront.net/wp-content/uploads/sites/871/2021/10/yong-jae-330-x-440.jpg" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm">
@@ -126,13 +126,13 @@
                 </div>
             </div>
             <div>
-                <p class="animated animatedFadeInUp fadeInUp mb-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">25 Mar 2023</p>
+                <p class="animated animatedFadeInUp fadeInUp mb-2 text-xs font-semibold tracking-wide text-gray-800 uppercase">20 Oct 2023</p>
                 <div class="mb-3">
                     <a aria-label="Article" class="inline-block text-black transition-colors duration-200 hover:text-orange-700">
-                        <p class="animated animatedFadeInUp fadeInUp font-sans text-xl text-orange-700 font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">The Culture!</p>
+                        <p class="animated animatedFadeInUp fadeInUp font-sans text-xl text-orange-700 font-extrabold leading-none tracking-tight lg:text-4xl xl:text-5xl">Wow!</p>
                     </a>
                 </div>
-                <p class="animated animatedFadeInUp fadeInUp mb-4 text-base text-gray-800 md:text-lg">Every moment was a marvel! I need to book another trip soon .. can I bring my chickens?</p>
+                <p class="animated animatedFadeInUp fadeInUp mb-4 text-base text-gray-800 md:text-lg">We took the helitour, and had a blast! I had to pay separate for my chickens though ... </p>
                 <div class="animated animatedFadeInUp fadeInUp flex items-center">
                     <a aria-label="Authror" class="mr-3">
                         <img src="https://res.cloudinary.com/springboard-images/image/upload/c_limit,q_auto,f_webp,dpr_auto,fl_lossy/v1677588459/website-redesign/lifestyle-photography/software-engineering-career-track-video.webp" alt="avatar" class="object-cover w-10 h-10 rounded-full shadow-sm">
@@ -177,19 +177,19 @@
                             <div class="mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M16.293 8.293 11 13.586l-2.293-2.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z"/></svg>
                             </div>
-                            <p class="font-medium text-gray-800">Guided Tour of Akasuka</p>
+                            <p class="font-medium text-gray-800">Helicopter Tour</p>
                         </li>
                         <li class="flex items-center">
                             <div class="mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M16.293 8.293 11 13.586l-2.293-2.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z"/></svg>
                             </div>
-                            <p class="font-medium text-gray-800">Free time to explore</p>
+                            <p class="font-medium text-gray-800">Birthday Everyday</p>
                         </li>
                         <li class="flex items-center">
                             <div class="mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M16.293 8.293 11 13.586l-2.293-2.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z"/></svg>
                             </div>
-                            <p class="font-medium text-gray-800">Mini food tour</p>
+                            <p class="font-medium text-gray-800">Unguided exploration</p>
                         </li>
                     </ul>
                     <form action="{{ url_for('destinations_dubai') }}" method="POST">
@@ -198,7 +198,7 @@
                         {% for field in form
                         if field.widget.input_type != 'hidden' %}
                     
-                            {{field(class_="inline-flex cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
+                            {{field(class_="inline-flex mt-4 text-center cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
 
 
                             {% for error in field.errors %}
@@ -214,7 +214,7 @@
                     <div class="mb-4 text-center">
                         <p class="text-xl font-medium tracking-wide text-white">Premium Plan</p>
                         <div class="flex items-center justify-center">
-                            <p class="mr-2 text-5xl font-semibold text-white lg:text-6xl">$1550</p>
+                            <p class="mr-2 text-5xl font-semibold text-white lg:text-6xl">$1850</p>
                             <p class="text-lg text-white">- 2 week</p>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
                             <div class="mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M16.293 8.293 11 13.586l-2.293-2.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z"/></svg>
                             </div>
-                            <p class="font-medium text-white">Guided Tour of Akasuka</p>
+                            <p class="font-medium text-white">Helicopter Tour and Skyscraper Dinner</p>
                         </li>
                         <li class="flex items-center">
                             <div class="mr-3">
@@ -235,13 +235,13 @@
                             <div class="mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M16.293 8.293 11 13.586l-2.293-2.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z"/></svg>
                             </div>
-                            <p class="font-medium text-white">Upscale food tour</p>
+                            <p class="font-medium text-white">Birthday Everyday Two Hosts</p>
                         </li>
                         <li class="flex items-center">
                             <div class="mr-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8.009 8.009 0 0 1-8 8z"/><path d="M16.293 8.293 11 13.586l-2.293-2.293-1.414 1.414L11 16.414l6.707-6.707-1.414-1.414z"/></svg>
                             </div>
-                            <p class="font-medium text-white">Resort with pool, spa, and buffet</p>
+                            <p class="font-medium text-white">Resort with pool, spa, and food allowance</p>
                         </li>
                     </ul>
                     <form action="{{ url_for('destinations_dubai_p') }}" method="POST">
@@ -250,7 +250,7 @@
                         {% for field in form1
                         if field.widget.input_type != 'hidden' %}
                     
-                            {{field(class_="inline-flex cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
+                            {{field(class_="inline-flex mt-4 text-center cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-cyan-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
 
 
                             {% for error in field.errors %}
@@ -269,18 +269,15 @@
     <div class="px-4 pt-12 mx-auto smLmax-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div class="grid gap-12 row-gap-10 mb-8 lg:grid-cols-6">
             <div class="md:max-w-md lg:col-span-2">
-                <a href="#" aria-label="Go home" title="Company" class="inline-flex items-center">
+                <a href="/voyagr" aria-label="Go home" title="Company" class="inline-flex items-center">
                     <span class="ml-2 text-xl font-bold tracking-wide text-orange-700 uppercase">Voyagr</span>
                 </a>
-                <div class="mt-4 lg:max-w-sm">
+                <div class="mt-7 lg:max-w-sm">
                     <p class="text-sm text-gray-800">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum magnam temporibus perspiciatis nam, veniam no
-                    </p>
-                    <p class="mt-4 text-sm text-gray-800">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum magnam temporibus perspiciatis nam, veniam no
+                        Our goal is to offer unforgettable voyages that cater to individual preferences, ensuring every adventure is as unique as the traveler embarking upon it.
                     </p>
                     <br>
-                    <a href="#top" class="text-orange-700 hover:text-cyan-700">back to top</a>
+                    <a href="#top" class="text-orange-700">back to top</a>
                 </div>
             </div>
             <div class="gird grid-cols-2 grap-5 row-gap-8 lg:col-span-4 md:grid-cols-4 inline-flex space-x-20 ">
@@ -288,16 +285,16 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Services</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Flights</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Flights</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Cruises</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Cruises</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Stays</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Stays</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Packages</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Packages</a>
                         </li>
                     </ul>
                 </div>
@@ -305,13 +302,13 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Platforms</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Web</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Web</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Mobile</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Mobile</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Desktop</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Desktop</a>
                         </li>
                     </ul>
                 </div>
@@ -319,16 +316,16 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Learn More</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Media</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Media</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Brochures</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Brochures</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Careers</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Careers</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Education</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Education</a>
                         </li>
                     </ul>
                 </div>
@@ -336,16 +333,16 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Business</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Entrepreneur</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Entrepreneur</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Personal</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Personal</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Wiki</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Wiki</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Forum</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Forum</a>
                         </li>
                     </ul>
                 </div>
@@ -355,17 +352,17 @@
         <div class="flex flex-col justify-between pt-5 pb-10 sm:flex-row">
             <p class="text-sm text-orange-700">© Copyright 2023 Lorem Inc. All rights reserved.</p>
             <div class="inline-flex items-center mt-4 space-x-4 sm:mt-0">
-                <a href="/" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
+                <a href="#" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512">
                         <path opacity="1" fill="#1E3050" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
                     </svg>
                 </a>
-                <a href="/" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
+                <a href="#" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
                         <path d="M459.4 151.7c.3 4.5 .3 9.1 .3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53 51.7 63.7 129.3 105.3 216.4 109.8-1.6-7.8-2.6-15.9-2.6-24 0-57.8 46.8-104.9 104.9-104.9 30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3z"/>
                     </svg>
                 </a>
-                <a href="/" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
+                <a href="#" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
                         <path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/>
                     </svg>

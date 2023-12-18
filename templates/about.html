@@ -5,16 +5,16 @@
 <nav class="text-white bg-gray-900">
     <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
     <ul>
-        <li><a href="/voyagr/about">About</a></li>
-        <li><a href="/voyagr/destinations">Destinations</a></li>
+        <li><a href="/voyagr/about" class="hover:text-orange-700">About</a></li>
+        <li><a href="/voyagr/destinations" class="hover:text-orange-700">Destinations</a></li>
         {% if session['username'] %}
-        <li><a href="/voyagr/login" class="hidden">Login</a></li>
+        <li><a href="/voyagr/login" class="hidden hover:text-orange-700">Login</a></li>
         {% else %}
-        <li><a href="/voyagr/login">Login</a></li>
+        <li><a href="/voyagr/login" class="hover:text-orange-700">Login</a></li>
         {% endif %}
         {% if session['username'] %}
-        <li><a href="/voyagr/users/{{session['username']}}">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a href="/voyagr/users/{{session['username']}}" class="hover:text-orange-700">Profile</a></li>
+        <li><a href="/logout" class="hover:text-orange-700">Logout</a></li>
         {% endif %}
     </ul>
     <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
@@ -38,11 +38,11 @@
             <div class="">
                 <form class="header3 animated animatedFadeInUp fadeInUp ml-56 mb-3 flex flex-col w-1/2 md:flex-row md:px-16">
                     <input type="text" placeholder="Email" class="flex-grow w-full h-12 px-4 mb-3 text-black transition duration-200 border-2 border-transparent rounded appearance-none md:mr-4 md:mb-0 focus:border-orange-700 focus:outline-none focus:shadow-outline">
-                    <button type="submit" class="inline-flex items-center justify-center w-full h-12 px-6 font-semibold tracking-wide text-white transition duration-200 rounded-full shadow-md md:w-auto bg-orange-700 hover:bg-cyan-600 focus:shadow-outline focus:outline-none">Subscribe</button>
+                    <button type="submit" class="inline-flex items-center justify-center w-full h-12 px-6 font-semibold tracking-wide text-white transition duration-200 rounded-full border hover:border-orange-700 hover:text-orange-700 shadow-md md:w-auto bg-orange-700 hover:bg-transparent focus:shadow-outline focus:outline-none">Subscribe</button>
                 </form>
-                <p class="header4 animated animatedFadeInUp fadeInUp max-w-md mr-20 mb-10 text-xs tracking-wide text-gray-800 sm:text-sm sm:mx-auto md:mb-16 ">
+                <p class="header4 animated animatedFadeInUp fadeInUp max-w-md text-left mb-10 text-xs tracking-wide text-gray-800 sm:text-sm sm:mx-auto md:mb-16 ">
                     <i>Voyagr</i>
-                    respects your privacy. Unsubscribe at any time
+                    respects your privacy. <a href="#" class="hover:text-orange-700">Unsubscribe</a> at any time.
                 </p>
             </div>
         </div>
@@ -72,26 +72,26 @@
                     </span>
                 </h2>
                 <p class="animated animatedFadeInUp fadeInUp text-base text-gray-800 md:text-lg">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque fugit cum iusto molestias ut velit in recusandae delectus maxime rerum. Aut assumenda alias amet laboriosam rem et repellendus, impedit repudiandae?
+                    Choose Voyagr for tailored travel experiences that match your unique wanderlust. With curated destinations, insider insights, and seamless booking, Voyagr turns your dream journey into a personalized reality. Explore, discover, and go on unforgettable voyagaes with confidence and ease.
                 </p>
             </div>
             <div class="grid gap-5 row-gap-8 sm:grid-cols-2">
                 <div class="animated animatedFadeInUp fadeInUp bg-white border-l-4 shadow-sm border-orange-700">
                     <div class="h-full p-5 border-l-0 rounded-r">
-                        <h6 class="mb-2 font-semibold leading-5">Amazing deals</h6>
-                        <p class="text-sm text-gray-800">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic cumque omnis, unde ipsum nostrum nihil voluptatibus, itaque consequatur blanditiis, ullam voluptates quisquam voluptate eaque ratione culpa officiis! Dolore, accusantium omnis!</p>
+                        <h6 class="mb-2 font-semibold leading-5">Best deals</h6>
+                        <p class="text-sm text-gray-800">Opt for our deals to unlock worthwhile savings on your dream escapes. With exclusive offers on flights, hotels, and packages, Voyagr brings affordability without compromising on quality. Embrace extraordinary experiences at unbeatable prices, making every journey a remarkable adventure.</p>
                     </div>
                 </div>
                 <div class="animated animatedFadeInUp fadeInUp bg-white border-l-4 shadow-sm border-orange-700">
                     <div class="h-full p-5 border-l-0 rounded-r">
                         <h6 class="mb-2 font-semibold leading-5">Travel Tips</h6>
-                        <p class="text-sm text-gray-800">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic cumque omnis, unde ipsum nostrum nihil voluptatibus, itaque consequatur blanditiis, ullam voluptates quisquam voluptate eaque ratione culpa officiis! Dolore, accusantium omnis!</p>
+                        <p class="text-sm text-gray-800">Discover our treasure trove of tips and testimonials to elevate your adventures. From insider secrets to off-the-beaten-path recommendations, Voyagr empowers travelers with insights ensuring each trip is filled with unique experiences and smooth navigation.</p>
                     </div>
                 </div>  
             </div>        
         </div>
         <div>
-            <img class="animated animatedFadeInUp fadeInUp object-cover w-full h-56 rounded shadow-lg sm:h-96" src="https://img.freepik.com/free-photo/active-lifestyle-travel-tourism-cheerful-fashionable-young-dark-skinned-traveler-with-backpack-holding-map-feeling-excited-about-road-trip-mountain-area-standing-nature-surroundings_273609-946.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699401600&semt=ais" alt="">
+            <img class="animated animatedFadeInUp fadeInUp mt-16 object-cover w-full h-56 rounded shadow-lg sm:h-96" src="https://img.freepik.com/free-photo/active-lifestyle-travel-tourism-cheerful-fashionable-young-dark-skinned-traveler-with-backpack-holding-map-feeling-excited-about-road-trip-mountain-area-standing-nature-surroundings_273609-946.jpg?size=626&ext=jpg&ga=GA1.1.1880011253.1699401600&semt=ais" alt="">
         </div>   
     </div>
 </div>
@@ -108,11 +108,11 @@
         <div class="space-y-4">
             <div class="border-b">
                 <button type="button" aria-label="Open item" title="Open item" class="animated animatedFadeInUp fadeInUp flex itmes-center justify-between w-full p-4 focus:outline-none">
-                    <p class="text-lg font-medium">how do I schedule a trip in advance?</p>
+                    <p class="text-lg font-medium">How do I schedule a trip in advance?</p>
                 </button>
                 <div class="p-4 pt-0 animated animatedFadeInUp fadeInUp">
                     <p class="text-gray-700">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque maxime nulla vitae libero distinctio ex perspiciatis voluptatem obcaecati, voluptates dolores sed pariatur beatae assumenda ipsam quis quidem totam eveniet nostrum.
+                        To book a trip in advance, go to our destinations page, choose a destination and package, then schedule your trip there. Be sure to set the start and end dates for your desired trip.
                     </p>
                 </div>
             </div>
@@ -122,17 +122,17 @@
                 </button>
                 <div class="p-4 pt-0 animated animatedFadeInUp fadeInUp">
                     <p class="text-gray-700">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque maxime nulla vitae libero distinctio ex perspiciatis voluptatem obcaecati, voluptates dolores sed pariatur beatae assumenda ipsam quis quidem totam eveniet nostrum.
+                        It will depend on which package you choose. Many of our premium packages include food allowances/buffets.
                     </p>
                 </div>
             </div>
             <div class="border-b">
                 <button type="button" aria-label="Open item" title="Open item" class="animated animatedFadeInUp fadeInUp flex itmes-center justify-between w-full p-4 focus:outline-none">
-                    <p class="text-lg font-medium">Are these real deals?</p>
+                    <p class="text-lg font-medium">Are there any additional fees or taxes not included in the booking price?</p>
                 </button>
                 <div class="p-4 pt-0 animated animatedFadeInUp fadeInUp">
                     <p class="text-gray-700">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque maxime nulla vitae libero distinctio ex perspiciatis voluptatem obcaecati, voluptates dolores sed pariatur beatae assumenda ipsam quis quidem totam eveniet nostrum.
+                        In some cases, additional fees or taxes might apply and are not always included in the initial booking price. These can include resort fees, local taxes, or service charges that are specific to certain accommodations or destinations.
                     </p>
                 </div>
             </div>
@@ -144,18 +144,15 @@
     <div class="px-4 pt-12 mx-auto smLmax-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div class="grid gap-12 row-gap-10 mb-8 lg:grid-cols-6">
             <div class="md:max-w-md lg:col-span-2">
-                <a href="#" aria-label="Go home" title="Company" class="inline-flex items-center">
+                <a href="/voyagr" aria-label="Go home" title="Company" class="inline-flex items-center">
                     <span class="ml-2 text-xl font-bold tracking-wide text-orange-700 uppercase">Voyagr</span>
                 </a>
-                <div class="mt-4 lg:max-w-sm">
-                    <p class="text-sm text-purple-950">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum magnam temporibus perspiciatis nam, veniam no
-                    </p>
-                    <p class="mt-4 text-sm text-purple-950">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum magnam temporibus perspiciatis nam, veniam no
+                <div class="mt-7 lg:max-w-sm">
+                    <p class="text-sm text-gray-800">
+                        Our goal is to offer unforgettable voyages that cater to individual preferences, ensuring every adventure is as unique as the traveler embarking upon it.
                     </p>
                     <br>
-                    <a href="#top" class="text-orange-700 hover:text-cyan-700">back to top</a>
+                    <a href="#top" class="text-orange-700">back to top</a>
                 </div>
             </div>
             <div class="gird grid-cols-2 grap-5 row-gap-8 lg:col-span-4 md:grid-cols-4 inline-flex space-x-20 ">
@@ -163,16 +160,16 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Services</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Flights</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Flights</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Cruises</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Cruises</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Stays</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Stays</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Packages</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Packages</a>
                         </li>
                     </ul>
                 </div>
@@ -180,13 +177,13 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Platforms</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Web</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Web</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Mobile</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Mobile</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Desktop</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Desktop</a>
                         </li>
                     </ul>
                 </div>
@@ -194,16 +191,16 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Learn More</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Media</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Media</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Brochures</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Brochures</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Careers</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Careers</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Education</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Education</a>
                         </li>
                     </ul>
                 </div>
@@ -211,16 +208,16 @@
                     <p class="font-semibold tracking-wide text-teal-accent-400 ml-10">Business</p>
                     <ul class="mt-2 space-y-2 inline-grid">
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Entrepreneur</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Entrepreneur</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Personal</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Personal</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Wiki</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Wiki</a>
                         </li>
                         <li>
-                            <a href="/" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Forum</a>
+                            <a href="#" class="transition-colors duration-300 text-gray-900  hover:text-orange-700">Forum</a>
                         </li>
                     </ul>
                 </div>
@@ -230,17 +227,17 @@
         <div class="flex flex-col justify-between pt-5 pb-10 sm:flex-row">
             <p class="text-sm text-orange-700">© Copyright 2023 Lorem Inc. All rights reserved.</p>
             <div class="inline-flex items-center mt-4 space-x-4 sm:mt-0">
-                <a href="/" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
+                <a href="#" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="17.5" viewBox="0 0 448 512">
                         <path opacity="1" fill="#1E3050" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
                     </svg>
                 </a>
-                <a href="/" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
+                <a href="#" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
                         <path d="M459.4 151.7c.3 4.5 .3 9.1 .3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53 51.7 63.7 129.3 105.3 216.4 109.8-1.6-7.8-2.6-15.9-2.6-24 0-57.8 46.8-104.9 104.9-104.9 30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3z"/>
                     </svg>
                 </a>
-                <a href="/" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
+                <a href="#" class="transition-colors duration-300 text-orange-700 hover:text-cyan-800">
                     <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 512 512">
                         <path d="M512 256C512 114.6 397.4 0 256 0S0 114.6 0 256C0 376 82.7 476.8 194.2 504.5V334.2H141.4V256h52.8V222.3c0-87.1 39.4-127.5 125-127.5c16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1c-42 0-58.2 15.9-58.2 57.2V256h83.6l-14.4 78.2H287V510.1C413.8 494.8 512 386.9 512 256h0z"/>
                     </svg>

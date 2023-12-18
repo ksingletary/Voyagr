@@ -5,25 +5,25 @@
 
 <div class=" -mt-20">
     <img src="https://www.passengerterminaltoday.com/wp-content/uploads/2018/07/bags_plane.jpg" id="bimg" class="absolute z-0 inset-0 object-cover w-full h-full mix-blend-overlay" alt="">
-    <nav class="text-white z-10" id="destine">
-        <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
-        <ul>
-            <li><a href="/voyagr/about">About</a></li>
-            <li><a href="/voyagr/destinations">Destinations</a></li>
-            {% if session['username'] %}
-            <li><a href="/voyagr/login" class="hidden">Login</a></li>
-            {% else %}
-            <li><a href="/voyagr/login">Login</a></li>
-            {% endif %}
-            {% if session['username'] %}
-            <li><a href="/voyagr/users/{{session['username']}}">Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
-            {% endif %}
-        </ul>
-        <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
-        inline-block hover:bg-transparent hover:border-orange-400 
-        text-white duration-300 hover:border border border-transparent">Book a trip</a>
-    </nav> 
+    <nav class="text-white z-10">
+            <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
+            <ul>
+                <li><a href="/voyagr/about" class="hover:text-orange-700">About</a></li>
+                <li><a href="/voyagr/destinations" class="hover:text-orange-700" >Destinations</a></li>
+                {% if session['username'] %}
+                <li><a href="/voyagr/login" class="hidden hover:text-orange-700">Login</a></li>
+                {% else %}
+                <li><a href="/voyagr/login" class="hover:text-orange-700">Login</a></li>
+                {% endif %}
+                {% if session['username'] %}
+                <li><a href="/voyagr/users/{{session['username']}}" class="hover:text-orange-700">Profile</a></li>
+                <li><a href="/logout" class="hover:text-orange-700">Logout</a></li>
+                {% endif %}
+            </ul>
+            <a href="/voyagr/destinations" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
+            inline-block hover:bg-transparent hover:border-orange-700 
+            text-white duration-300 hover:border border border-transparent">Book a trip</a>
+    </nav>
     <div class="relative bg-opacity-75">
         <div class="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div class="flex flex-col mt-20 items-center justify-between xl:flex-row">
@@ -60,13 +60,18 @@
         </div>
     </div>
 </div>
-<div class="bg-white">
+<div class="bg-white" id="info">
     <h1 class="animated animatedFadeInUp fadeInUp text-orange-700 text-5xl text-center font-sans font-bold tracking-tight sm:text-4xl sm:leading-none ">Booked Trips</h1>
+    <span>
+        {% for msg in get_flashed_messages() %}
+            <p class="text-red-700 ml-8 font-semibold text-sm font-sans">*{{msg}}</p>
+        {% endfor %}
+    </span>
     <div class="px-8 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div class="grid gap-12 row-gap-8 lg:grid-cols-2">
             {% for package in range((booked_package)|length) %}
                 {% if 'P' in new_booked_packaged[package-1] %}
-                    <div class="mt-5 ">
+                    <div class="mt-5">
                         <a aria-label="View Item" class="">
                             <div class="animated animatedFadeInUp fadeInUp border-4 border-orange-700 relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
                                 <img src="{{booked_trips[package].trip.photo}}" class="object-cover w-full h-full md:h-64 xl:h-80" alt="">
@@ -75,6 +80,23 @@
                                     <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
                                     <a href="/voyagr/pics" class="bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
                                     text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">Explore Photos</a>
+                                    <form class="inline-block" method="POST">
+                                        {{ form.hidden_tag() }}
+                
+                                        {% for field in form
+                                        if field.widget.input_type != 'hidden' %}
+                                    
+                                            
+                                            {{field(class_="cursor-pointer ml-16 bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
+                                            text-red-700 duration-300 border-red-700 hover:bg-red-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp")}}
+                
+                
+                                            {% for error in field.errors %}
+                                            {{error}}
+                                            {% endfor %}
+                                        
+                                        {% endfor %}
+                                    </form>
                                 </div>
                             </div>
                         </a>
@@ -103,6 +125,23 @@
                                     <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
                                     <a href="/voyagr/pics" class="bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
                                     text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">Explore Photos</a>
+                                    <form class="inline-block" method="POST">
+                                        {{ form.hidden_tag() }}
+                
+                                        {% for field in form
+                                        if field.widget.input_type != 'hidden' %}
+                                    
+                                            
+                                            {{field(class_="cursor-pointer ml-16 bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
+                                            text-red-700 duration-300 border-red-700 hover:bg-red-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp")}}
+                
+                
+                                            {% for error in field.errors %}
+                                            {{error}}
+                                            {% endfor %}
+                                        
+                                        {% endfor %}
+                                    </form>
                                 </div>
                             </div>
                         </a>
