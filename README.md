@@ -28,6 +28,15 @@ I decided to delve deeper into Tailwind CSS, and design most of the application 
 - **Destinations with various activities** Users can view and book from desinations
 - **About page showing fake info** An about page about Voyagr with FAQ
 
+## User Flow
+
+- Login and Registration (must register to view destinations and book)
+- View the home page to see various destinations
+- Click destinations to see available 
+- Select a particular destination to see details
+- About page with more about Voyagr
+  
+
 ## Install
 
 To set up this project, ensure you have Python, Flask, and PostgreSQL installed.
