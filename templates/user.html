@@ -61,6 +61,23 @@
     </div>
 </div>
 <div class="bg-white" id="info">
+    <h3 class="animated animatedFadeInUp fadeInUp text-orange-700 text-3xl text-left ml-10 font-sans font-bold tracking-tight sm:text-2xl sm:leading-none ">Need to Cancel a Trip?</h3>
+    <form class="inline-block" method="POST">
+        {{ form.hidden_tag() }}
+
+        {% for field in form
+        if field.widget.input_type != 'hidden' %}
+    
+            
+            {{field(class_="inline-flex mt-4 text-center ml-10 cursor-pointer items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-red-600 hover:bg-orange-700 focus:shadow-outline focus:outline-none")}}
+
+
+            {% for error in field.errors %}
+            {{error}}
+            {% endfor %}
+        
+        {% endfor %}
+    </form>
     <h1 class="animated animatedFadeInUp fadeInUp text-orange-700 text-5xl text-center font-sans font-bold tracking-tight sm:text-4xl sm:leading-none ">Booked Trips</h1>
     <span>
         {% for msg in get_flashed_messages() %}
@@ -69,8 +86,9 @@
     </span>
     <div class="px-8 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div class="grid gap-12 row-gap-8 lg:grid-cols-2">
+            
             {% for package in range((booked_package)|length) %}
-                {% if 'P' in new_booked_packaged[package-1] %}
+                {% if 'P' in booked_package[package] %}
                     <div class="mt-5">
                         <a aria-label="View Item" class="">
                             <div class="animated animatedFadeInUp fadeInUp border-4 border-orange-700 relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
@@ -80,23 +98,7 @@
                                     <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
                                     <a href="/voyagr/pics" class="bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
                                     text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">Explore Photos</a>
-                                    <form class="inline-block" method="POST">
-                                        {{ form.hidden_tag() }}
-                
-                                        {% for field in form
-                                        if field.widget.input_type != 'hidden' %}
                                     
-                                            
-                                            {{field(class_="cursor-pointer ml-16 bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
-                                            text-red-700 duration-300 border-red-700 hover:bg-red-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp")}}
-                
-                
-                                            {% for error in field.errors %}
-                                            {{error}}
-                                            {% endfor %}
-                                        
-                                        {% endfor %}
-                                    </form>
                                 </div>
                             </div>
                         </a>
@@ -125,23 +127,6 @@
                                     <h5 class="animated animatedFadeInUp fadeInUp mt-2 text-white text-lg font-bold leading-none ">Thank you for choosing <i>Voyagr</i> for your recent {{booked_trips[package].trip.location.city}} booking! We're thrilled to have played a part in making your travel plans a reality. Your trust in us means the world, and we're committed to ensuring your experience exceeds expectations.</h5>
                                     <a href="/voyagr/pics" class="bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
                                     text-orange-700 duration-300 border-orange-700 hover:bg-orange-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp">Explore Photos</a>
-                                    <form class="inline-block" method="POST">
-                                        {{ form.hidden_tag() }}
-                
-                                        {% for field in form
-                                        if field.widget.input_type != 'hidden' %}
-                                    
-                                            
-                                            {{field(class_="cursor-pointer ml-16 bg-transparent mt-10 rounded-3xl py-2 px-2 font-bold inline-block 
-                                            text-red-700 duration-300 border-red-700 hover:bg-red-700 hover:text-white hover:border border animated animatedFadeInUp fadeInUp")}}
-                
-                
-                                            {% for error in field.errors %}
-                                            {{error}}
-                                            {% endfor %}
-                                        
-                                        {% endfor %}
-                                    </form>
                                 </div>
                             </div>
                         </a>
