@@ -17,7 +17,7 @@
         <li><a href="/logout" class="hover:text-orange-700">Logout</a></li>
         {% endif %}
     </ul>
-    <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
+    <a href="/voyagr/destinations" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
     inline-block hover:bg-transparent hover:border-orange-400 
     text-white duration-300 hover:border border border-transparent">Book a trip</a>
 </nav> 
@@ -36,7 +36,7 @@
         </div>
         <div class="flex items-center justify-center -mx-4 mt-20 lg:pl-8">
             <div class="header3 animated animatedFadeInUp fadeInUp flex flex-col itmes-end px-3">
-                <img class="object-cover mr-10 mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56" src="https://d1i21eq0w7p1n3.cloudfront.net/8dp5y8929kch1yxedsx4myxx9poa" alt="">
+                <img class="object-cover mr-10 mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56" src="/static/media/fromAPIenhanced.png" alt="">
                 <img class="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40" src="https://d1i21eq0w7p1n3.cloudfront.net/120xgnuvmbgqyzjekc2oa1xs7y60" alt="">
             </div>
             <div class="header4 animated animatedFadeInUp fadeInUp z-20 px-3 ">
@@ -243,7 +243,7 @@
                             <p class="font-medium text-white">Resort with pool, spa, food allowance</p>
                         </li>
                     </ul>
-                    <form action="{{ url_for('destinations_rome_p') }}" method="POST">
+                    <form action="{{ url_for('destinations_rome_premium') }}" method="POST">
                         {{ form1.hidden_tag() }}
 
                         {% for field in form1

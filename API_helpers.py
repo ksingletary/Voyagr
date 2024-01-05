@@ -3,6 +3,11 @@ from dotenv import load_dotenv
 import os
 import random
 
+"""The AMADEUS FOR DEVELOPERS API is still in beta. It is still somewhat buggy, but will show the 
+pictures if you re-generate batch, or navigate out and back into pics page. It's having a hard time with
+Paris and Rome, but the other locations seem to work fine.
+"""
+
 API_BASE_URL = "https://test.api.amadeus.com/v1"
 
 def configure():
@@ -42,7 +47,7 @@ def get_tokyo_pics():
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randrange(1,10)
+    numb_rand = random.randint(1,20)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
@@ -65,7 +70,7 @@ def get_rome_pics():
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randrange(1,10)
+    numb_rand = random.randint(1,8)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
@@ -83,12 +88,12 @@ def get_paris_pics():
     params = {
         'latitude': '48.8566',
         'longitude': '2.3522',
-        'radius': '1'
+        'radius': '20'
     }
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randrange(1,10)
+    numb_rand = random.randint(1,8)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
@@ -111,7 +116,7 @@ def get_dubai_pics():
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randrange(0,4)
+    numb_rand = random.randint(0,4)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
@@ -134,7 +139,7 @@ def get_egypt_pics():
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randrange(1,7)
+    numb_rand = random.randint(1,7)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)

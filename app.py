@@ -1,6 +1,6 @@
 """Flask app for Voyagr"""
 from flask import Flask, render_template, request, session, redirect, flash
-from models import db, connect_db, User, Trip, Location,  Activity, Booked_Trip
+from models import db, connect_db, User, Trip, Location, Booked_Trip
 from forms import UserForm, UpdatesForm, EditProfileForm, BookedTrips, PremiumBookedTrips, CancelTrip
 from API_helpers import get_tokyo_pics, get_rome_pics, get_paris_pics, get_dubai_pics, get_egypt_pics
 from functools import wraps
@@ -106,7 +106,7 @@ def destinations_page():
 #Individual Destinations
 
 global booked_package
-booked_package = []          #set so there's no duplicate bookings
+booked_package = []         
 
 @app.route('/voyagr/tokyo', methods=["GET", "POST"])
 @require_login
@@ -117,13 +117,14 @@ def destinations_tokyo():
     trip = Trip.query.get_or_404(1)            
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form.validate_on_submit() and form.date.data == '1':
         flash("You must choose a date for your trip!")
     if form.validate_on_submit() and form.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package, we ensure no duplicate bookings 
             flash(f"Already booked your {location.country} trip!")
         else:
-            booked_package.append(location.city)
+            booked_package.append(location.city)                                            #else we append to booked trip list, and db booked_trip for user
             booked_trip = Booked_Trip(cost=trip.cost, location_id=location.id, user_id=session['username'])
             db.session.add(booked_trip)
             db.session.commit()
@@ -135,18 +136,18 @@ def destinations_tokyo():
 
 @app.route('/voyagr/tokyo/prem', methods=["POST"])
 @require_login
-def destinations_tokyo_p():
+def destinations_tokyo_premium():
     """Individual Tokyo Destinations Page"""
 
     location = Location.query.get_or_404(1)
     trip = Trip.query.get_or_404(1)            
-
     form = BookedTrips()
     form1 = PremiumBookedTrips()
+
     if form1.validate_on_submit() and form1.date.data == '1':
         flash("You must choose a date for your trip!")
     if form1.validate_on_submit() and form1.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:          
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city + 'P')
@@ -166,13 +167,13 @@ def destinations_rome():
 
     location = Location.query.get_or_404(2)
     trip = Trip.query.get_or_404(2)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form.validate_on_submit() and form.date.data == '1':
         flash("You must choose a date for your trip!")
     if form.validate_on_submit() and form.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:        
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city)
@@ -187,18 +188,18 @@ def destinations_rome():
 
 @app.route('/voyagr/rome/prem', methods=["POST"])
 @require_login
-def destinations_rome_p():
+def destinations_rome_premium():
     """Individual Rome Destinations Page"""
 
     location = Location.query.get_or_404(2)
     trip = Trip.query.get_or_404(2)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form1.validate_on_submit() and form1.date.data == '1':
         flash("You must choose a date for your trip!")
     if form1.validate_on_submit() and form1.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:         
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city + 'P')
@@ -218,13 +219,13 @@ def destinations_giza():
 
     location = Location.query.get_or_404(5)
     trip = Trip.query.get_or_404(5)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form.validate_on_submit() and form.date.data == '1':
         flash("You must choose a date for your trip!")
     if form.validate_on_submit() and form.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:         
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city)
@@ -240,18 +241,18 @@ def destinations_giza():
 
 @app.route('/voyagr/giza/prem', methods=["POST"])
 @require_login
-def destinations_giza_p():
+def destinations_giza_premium():
     """Individual Giza Pyramids Destinations Page"""
 
     location = Location.query.get_or_404(5)
     trip = Trip.query.get_or_404(5)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form1.validate_on_submit() and form1.date.data == '1':
         flash("You must choose a date for your trip!")
     if form1.validate_on_submit() and form1.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:          
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city + 'P')
@@ -272,13 +273,13 @@ def destinations_paris():
 
     location = Location.query.get_or_404(3)
     trip = Trip.query.get_or_404(3)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form.validate_on_submit() and form.date.data == '1':
         flash("You must choose a date for your trip!")
     if form.validate_on_submit() and form.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:         
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city)
@@ -294,18 +295,18 @@ def destinations_paris():
 
 @app.route('/voyagr/paris/prem', methods=["POST"])
 @require_login
-def destinations_paris_p():
+def destinations_paris_premium():
     """Individual Paris Destinations Page"""
 
     location = Location.query.get_or_404(3)
     trip = Trip.query.get_or_404(3)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form1.validate_on_submit() and form1.date.data == '1':
         flash("You must choose a date for your trip!")
     if form1.validate_on_submit() and form1.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:        
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city + 'P')
@@ -326,13 +327,13 @@ def destinations_dubai():
 
     location = Location.query.get_or_404(4)
     trip = Trip.query.get_or_404(4)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form.validate_on_submit() and form.date.data == '1':
         flash("You must choose a date for your trip!")
     if form.validate_on_submit() and form.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:         
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city)
@@ -346,18 +347,18 @@ def destinations_dubai():
 
 @app.route('/voyagr/dubai/prem', methods=["POST"])
 @require_login
-def destinations_dubai_p():
+def destinations_dubai_premium():
     """Individual Dubai Destinations Page"""
 
     location = Location.query.get_or_404(4)
     trip = Trip.query.get_or_404(4)            
-    
     form1 = PremiumBookedTrips()
     form = BookedTrips()
+
     if form1.validate_on_submit() and form1.date.data == '1':
         flash("You must choose a date for your trip!")
     if form1.validate_on_submit() and form1.date.data != '1':
-        if location.city in booked_package or (location.city + 'P') in booked_package:         #if city is already in booked_package 
+        if location.city in booked_package or (location.city + 'P') in booked_package:         
             flash(f"Already booked your {location.country} trip!")
         else:
             booked_package.append(location.city + 'P')
@@ -369,6 +370,8 @@ def destinations_dubai_p():
 
     return render_template('dubai.html', form=form, form1=form1)
 
+#User show route and update
+
 @app.route('/voyagr/users/<int:user_id>', methods=["GET", "POST"])
 @require_login
 def user_show(user_id):
@@ -378,21 +381,21 @@ def user_show(user_id):
     trip = Trip.query.filter(Trip.location_id == Booked_Trip.location_id).all()
 
     if user.id != session['username']:
-        return redirect(f"/voyagr/users/{session['username']}")
+        return redirect(f"/voyagr/users/{session['username']}")         #this ensures a user can't alter url and access another user profile
 
     if booked_package:
         booked_trips = Booked_Trip.query.filter_by(user_id=user.id).all()
 
         if form.validate_on_submit():
-            trip_to_cancel = form.cancel.data  # Assuming the cancellation data is the trip ID
+            trip_to_cancel = form.cancel.data       #Assuming the cancellation data is same as trip data
             for booked_trip in range(len(booked_package)):
-                if booked_package[booked_trip] == trip_to_cancel or booked_package[booked_trip][0:-1] == form.cancel.data :
-                    booked_package.remove(booked_package[booked_trip])
+                if booked_package[booked_trip] == trip_to_cancel or booked_package[booked_trip][0:-1] == form.cancel.data:          #the [0:-1] takes into account a premium booking and removes the 'P'
+                    booked_package.remove(booked_package[booked_trip])              #we must remove from booked_package and booked_trips
                     db.session.delete(booked_trips[booked_trip])
                     db.session.commit()
                     flash("Successfully canceled the trip!")
                     return redirect(f'/voyagr/users/{user.id}')
-            flash("Trip ID not found in your bookings. No trip canceled.")
+            flash("Trip not found in your bookings. No trip canceled.")
             return redirect(f'/voyagr/users/{user.id}')
         return render_template('user.html', user=user, trip=trip, booked_package=booked_package, booked_trips=booked_trips, form=form)
     
@@ -420,13 +423,15 @@ def user_update(user_id):
     
     return render_template("user_edit.html", form=form, user=user)
 
+#All Picture Routes for locations
+
 @app.route('/voyagr/pics')
 @require_login
 def see_pics_page_tokyo():
     """Showing Pictures through API request"""
 
     pics = get_tokyo_pics()
-    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
+    flash("*Click location to generate new batch.")
 
     return render_template('pictures.html', pics=pics)
 
@@ -436,7 +441,7 @@ def see_pics_page_rome():
     """Showing Pictures through API request"""
 
     pics1 = get_rome_pics()
-    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
+    flash("*Click location to generate new batch.")
 
     return render_template('pictures_rome.html', pics1=pics1)
 
@@ -446,7 +451,7 @@ def see_pics_page_paris():
     """Showing Pictures through API request"""
 
     pics2 = get_paris_pics()
-    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
+    flash("*Click location to generate new batch.")
 
     return render_template('pictures_paris.html', pics2=pics2)
 
@@ -456,7 +461,7 @@ def see_pics_page_dubai():
     """Showing Pictures through API request"""
 
     pics3 = get_dubai_pics()
-    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
+    flash("*Click location to generate new batch.")
 
     return render_template('pictures_dubai.html', pics3=pics3)
 
@@ -466,7 +471,7 @@ def see_pics_page_egypt():
     """Showing Pictures through API request"""
 
     pics4 = get_egypt_pics()
-    flash("*Click location to generate new batch. Paris and Rome might not appear. Voyagr appreciates your cooperation while we fix the issue.")
+    flash("*Click location to generate new batch.")
 
     return render_template('pictures_egypt.html', pics4=pics4)
 

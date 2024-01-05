@@ -88,7 +88,7 @@
         <div class="grid gap-12 row-gap-8 lg:grid-cols-2">
             
             {% for package in range((booked_package)|length) %}
-                {% if 'P' in booked_package[package] %}
+                {% if 'P' in booked_package[package][-1] %}
                     <div class="mt-5">
                         <a aria-label="View Item" class="">
                             <div class="animated animatedFadeInUp fadeInUp border-4 border-orange-700 relative overflow-hidden transition duration-200 transform rounded shadow-lg hover:-translate-y-2 hover:shadow-2xl">
