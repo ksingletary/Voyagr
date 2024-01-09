@@ -2,6 +2,7 @@
 {% block title %}About{% endblock %}
 {% block content %}
 
+
 <nav class="text-white bg-gray-900">
     <a href="/voyagr" id="logo" class="text-3xl hover:text-orange-700">Voyagr</a>
     <ul>
@@ -21,6 +22,8 @@
     inline-block hover:bg-transparent hover:border-orange-400 
     text-white duration-300 hover:border border border-transparent">Book a trip</a>
 </nav> 
+
+
 <div class="mb-72">
     <div class="relative mt-20 bg-orange-100">
         <div class="px-4 py-16 mx-auto mr-5 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -36,19 +39,37 @@
                 </div>
             </div>
             <div class="">
-                <form class="header3 animated animatedFadeInUp fadeInUp ml-56 mb-3 flex flex-col w-1/2 md:flex-row md:px-16">
-                    <input type="text" placeholder="Email" class="flex-grow w-full h-12 px-4 mb-3 text-black transition duration-200 border-2 border-transparent rounded appearance-none md:mr-4 md:mb-0 focus:border-orange-700 focus:outline-none focus:shadow-outline">
-                    <button type="submit" class="inline-flex items-center justify-center w-full h-12 px-6 font-semibold tracking-wide text-white transition duration-200 rounded-full border hover:border-orange-700 hover:text-orange-700 shadow-md md:w-auto bg-orange-700 hover:bg-transparent focus:shadow-outline focus:outline-none">Subscribe</button>
+                <form method="POST" class="header3 animated animatedFadeInUp fadeInUp ml-56 mb-3 flex flex-col w-1/2 md:flex-row md:px-16">
+                    {{ form.hidden_tag() }}
+
+                    {% for field in form
+                    if field.widget.input_type != 'hidden' %}
+                    <div class="animated animatedFadeInUp fadeInUp mb-1 sm:mb-2">
+                        
+                        {{field(class_="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-orange-700 focus:outline-none focus:shadow-outline")}}
+
+                        {% for error in field.errors %}
+                        {{error}}
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="inline-flex ml-4 items-center justify-center w-full h-12 px-6 font-semibold tracking-wide text-white transition duration-200 rounded-full border hover:border-orange-700 hover:text-orange-700 shadow-md md:w-auto bg-orange-700 hover:bg-transparent focus:shadow-outline focus:outline-none">Subscribe</button>
                 </form>
                 <p class="header4 animated animatedFadeInUp fadeInUp max-w-md text-left mb-10 text-xs tracking-wide text-gray-800 sm:text-sm sm:mx-auto md:mb-16 ">
                     <i>Voyagr</i>
-                    respects your privacy. <a href="#" class="hover:text-orange-700">Unsubscribe</a> at any time.
+                    respects your privacy. Unsubscribe at any time.
                 </p>
+                <div>
+                    {% for msg in get_flashed_messages() %}
+                    <div class="text-orange-700 font-sans text-center mr-28">{{msg}}</div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
-    <a href="#info" aria-label="Scroll down" id="tag" class="header5 animated animatedFadeInUp fadeInUp bounce flex items-center justify-center  w-10 h-10 mt-20 mx-auto text-white duration-300 transform bg-orange-700 rounded-full hover:bg-cyan hover:shadow hover:scale-110">
-        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    
+    <a href="#info" aria-label="Scroll down" class="header5 animated animatedFadeInUp fadeInUp bounce flex items-center justify-center  w-10 h-10 mt-20 mx-auto text-white duration-300 transform bg-orange-700 rounded-full hover:bg-cyan hover:shadow hover:scale-110">
+        <svg width="200px" height="200px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 6V18M12 18L7 13M12 18L17 13" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </a>

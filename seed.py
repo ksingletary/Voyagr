@@ -1,4 +1,4 @@
-"""Seed file to create Voyagr available locations, activityies, descriptions, etc."""
+"""Seed file to create Voyagr available locations, activities, descriptions, etc."""
 
 from models import Trip, Location, Activity, db
 from app import app

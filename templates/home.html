@@ -194,7 +194,7 @@
                         <div class="relative">
                             <div class="animated animatedFadeInUp fadeInUp relative bg-white rounded shadow-2xl sm:p-10">
                                 <h3 class="animated animatedFadeInUp fadeInUp mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">Subscribe for updates</h3>
-                                <form action="#">
+                                <form method="POST">
                                     {{ form.hidden_tag() }}
 
                                     {% for field in form
@@ -209,14 +209,14 @@
                                     </div>
                                     {% endfor %}
                                     <div class="mt-4 mb-2 sm:mb-4">
-                                        <a href="#" class="animated animatedFadeInUp fadeInUp border-orange-700 border-t-2 border-b-2 border-l-2 border-r-2 py-2.5
+                                        <button type="submit" class="animated animatedFadeInUp fadeInUp border-orange-700 border-t-2 border-b-2 border-l-2 border-r-2 py-2.5
                                          inline-flex items-center justify-center 
                                         w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full 
                                         shadow-md bg-orange-700 hover:text-orange-700 hover:bg-transparent focus:shadow-outline focus:outline-none ">
                                             Subscribe
-                                        </a>
+                                        </button>
                                     </div>
-                                    <p class="animated animatedFadeInUp fadeInUp ml-5 text-xs text-gray-600 sm:text-sm">We respect your privacy. <a href="#" class="hover:text-orange-700">Unsubscribe</a> at any time.</p>
+                                    <p class="animated animatedFadeInUp fadeInUp ml-5 text-xs text-gray-600 sm:text-sm">We respect your privacy. Unsubscribe at any time.</p>
                                 </form>
                             </div>
                         </div>

@@ -20,12 +20,14 @@ connect_db(app)
 with app.app_context():
     db.create_all()
 
-@app.route('/voyagr')
+@app.route('/voyagr', methods=["GET", "POST"])
 def home_page():
     """Home Page"""
 
-    form = UpdatesForm()
-    descr = Trip.query.all()          #subscribe for updates form. won't send, but will flash success mssg.
+    form = UpdatesForm() 
+    if form.validate_on_submit():
+        flash('You have successfully subscribed!')                       #subscribe for updates form. won't send email, but will flash success mssg.
+    descr = Trip.query.all()                                             #description for trips
 
     return render_template('home.html', form=form, descr=descr)
 
@@ -87,18 +89,24 @@ def logout():
     session.pop('username', None)
     return redirect('/voyagr')
 
-@app.route('/voyagr/about')
+@app.route('/voyagr/about', methods=["GET", "POST"])
 def about_page():
     """About Page for Voyagr"""
 
-    return render_template('about.html')
+    form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
+    if form.validate_on_submit():
+        flash('You have successfully subscribed!') 
 
-@app.route('/voyagr/destinations')
+    return render_template('about.html', form=form)
+
+@app.route('/voyagr/destinations', methods=["GET", "POST"])
 @require_login
 def destinations_page():
     """Destinations showing various hotspots"""
 
     form = UpdatesForm()            #subscribe for updates form. won't send, but will flash success mssg.
+    if form.validate_on_submit():
+        flash('You have successfully subscribed!') 
 
     return render_template('destinations.html', form=form)
 
@@ -387,7 +395,7 @@ def user_show(user_id):
         booked_trips = Booked_Trip.query.filter_by(user_id=user.id).all()
 
         if form.validate_on_submit():
-            trip_to_cancel = form.cancel.data       #Assuming the cancellation data is same as trip data
+            trip_to_cancel = form.cancel.data               #Assuming the cancellation data is same as trip data, which it is
             for booked_trip in range(len(booked_package)):
                 if booked_package[booked_trip] == trip_to_cancel or booked_package[booked_trip][0:-1] == form.cancel.data:          #the [0:-1] takes into account a premium booking and removes the 'P'
                     booked_package.remove(booked_package[booked_trip])              #we must remove from booked_package and booked_trips
@@ -398,10 +406,6 @@ def user_show(user_id):
             flash("Trip not found in your bookings. No trip canceled.")
             return redirect(f'/voyagr/users/{user.id}')
         return render_template('user.html', user=user, trip=trip, booked_package=booked_package, booked_trips=booked_trips, form=form)
-    
-    if user.id != session['username']:
-        return redirect(f"/voyagr/users/{session['username']}")
-
     
     return render_template('user.html', user=user, booked_package=booked_package, form=form)
 
@@ -416,7 +420,7 @@ def user_update(user_id):
 
     if form.validate_on_submit():
         user.username = form.username.data
-        user.image_url = form.image_url.data or user.image_url #if no image_url, use current image_url
+        user.image_url = form.image_url.data or user.image_url      #if no image_url, use current image_url
 
         db.session.commit()
         return redirect(f"/voyagr/users/{user.id}")

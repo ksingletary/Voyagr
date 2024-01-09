@@ -23,9 +23,14 @@
         <a href="/voyagr/destinations" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
         inline-block hover:bg-transparent hover:border-orange-700 
         text-white duration-300 hover:border border border-transparent">Book a trip</a>
-</nav>
+    </nav>
     <div class="relative bg-opacity-75">
         <div class="relative px-4 py-16 mx-auto overflow-hidden sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div>
+                {% for msg in get_flashed_messages() %}
+                <div class="text-orange-700 font-sans text-left">{{msg}}</div>
+                {% endfor %}
+            </div>
             <div class="flex flex-col mt-20 items-center justify-between xl:flex-row">
                 <div class="w-full max-w-xl mb-12 xl:mb-0 xl:pr-16 xl:w-7/12">
                     <h2 class="header rounded animated animatedFadeInUp fadeInUp max-w-lg mb-20 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
@@ -177,7 +182,7 @@
             </div>
             <div class="px-6 py-8 border border-t-0 rounded-b sm:px-8">
                 <h5 class="animated animatedFadeInUp fadeInUp mb-2 text-xl font-bold leading-none sm:text-2xl">Subscribe for other offers</h5>
-                <form>
+                <form method="POST">
                     {{ form.hidden_tag() }}
 
                     {% for field in form
@@ -191,7 +196,7 @@
                         
                     {% endfor %}
                     <div class="mt-4 mb-2 sm:mb-4">
-                        <a href="#" class="animated animatedFadeInUp fadeInUp hover:bg-transparent hover:text-orange-700 border border-orange-700 mt-4 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 shadow-md bg-orange-700 focus:shadow-outline focus:outline-none text-white">Subscribe</a>
+                        <button type="submit" class="animated animatedFadeInUp fadeInUp hover:bg-transparent hover:text-orange-700 border border-orange-700 mt-4 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 shadow-md bg-orange-700 focus:shadow-outline focus:outline-none text-white">Subscribe</button>
                     </div>
                 </form>
             </div>
