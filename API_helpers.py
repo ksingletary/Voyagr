@@ -47,11 +47,11 @@ def get_tokyo_pics():
 
     response = requests.get(f'{API_BASE_URL}/shopping/activities', params=params, headers=headers)
     data = response.json()
-    numb_rand = random.randint(1,20)
+    numb_rand = random.randint(1,10)
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
-        if len(pics) == 12:
+        if len(pics) == 10:
             break
     return pics
 
@@ -74,7 +74,7 @@ def get_rome_pics():
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
-        if len(pics) == 12:
+        if len(pics) == 10:
             break
     return pics
 
@@ -97,7 +97,7 @@ def get_paris_pics():
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
-        if len(pics) == 12:
+        if len(pics) == 10:
             break
     return pics
 
@@ -120,7 +120,7 @@ def get_dubai_pics():
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
-        if len(pics) == 12:
+        if len(pics) == 10:
             break
     return pics
 
@@ -143,7 +143,7 @@ def get_egypt_pics():
     pics = []
     for pic in data['data'][numb_rand]['pictures']:
         pics.append(pic)
-        if len(pics) == 12:
+        if len(pics) == 10:
             break
     return pics
 
