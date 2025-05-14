@@ -15,6 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.secret_key = 'not_telling_you!'
 
+print("DATABASE_URL:", os.environ.get('DATABASE_URL'))
 connect_db(app)
 
 with app.app_context():
