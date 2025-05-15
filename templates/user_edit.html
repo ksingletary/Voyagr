@@ -25,8 +25,7 @@
                         <form method="POST">
                             {{ form.hidden_tag() }}
 
-                            {% for field in form
-                            if field.widget.input_type != 'hidden' %}
+                            {% for field in form if field.widget.input_type != 'hidden' %}
                             <div class="animated animatedFadeInUp fadeInUp mb-1 sm:mb-2">
                                 {{field.label(class_="inline-block mb-1 font-medium")}}
                                 {{field(class_="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-orange-500 focus:outline-none focus:shadow-outline")}}
