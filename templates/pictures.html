@@ -8,13 +8,10 @@
         <li><a href="/voyagr/about" class="hover:text-orange-700">About</a></li>
         <li><a href="/voyagr/destinations" class="hover:text-orange-700">Destinations</a></li>
         {% if session['username'] %}
-        <li><a href="/voyagr/login" class="hidden hover:text-orange-700">Login</a></li>
-        {% else %}
-        <li><a href="/voyagr/login" class="hover:text-orange-700">Login</a></li>
-        {% endif %}
-        {% if session['username'] %}
         <li><a href="/voyagr/users/{{session['username']}}" class="hover:text-orange-700">Profile</a></li>
         <li><a href="/logout" class="hover:text-orange-700">Logout</a></li>
+        {% else %}
+        <li><a href="/voyagr/login" class="hover:text-orange-700">Login</a></li>
         {% endif %}
     </ul>
     <a href="#" class="bg-orange-700 rounded-3xl py-2 px-6 font-medium 
